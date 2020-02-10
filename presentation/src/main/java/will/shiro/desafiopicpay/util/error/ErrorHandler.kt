@@ -1,10 +1,12 @@
 package will.shiro.desafiopicpay.util.error
 
+import will.shiro.desafiopicpay.util.resources.AndroidStrings
 import will.shiro.domain.util.logger.Logger
 import javax.inject.Inject
 
 class ErrorHandler @Inject constructor(
-    private val logger: Logger
+    private val logger: Logger,
+    private val strings: AndroidStrings
 ) {
 
     fun getDialogData(
@@ -14,9 +16,9 @@ class ErrorHandler @Inject constructor(
     ): DialogData {
         val data = getPlaceholder(throwable, retryAction)
         return if (data.message == null) {
-            DialogData.error(getUnknownErrorMessage(), onDismiss = onDismiss)
+            DialogData.error(strings, getUnknownErrorMessage(), onDismiss = onDismiss)
         } else {
-            DialogData.error(data.message, data.buttonText, data.buttonAction)
+            DialogData.error(strings, data.message, data.buttonText, data.buttonAction)
         }
     }
 
@@ -24,12 +26,12 @@ class ErrorHandler @Inject constructor(
         logger.e(throwable)
         return Placeholder.Action(
             getUnknownErrorMessage(),
-            "Try Again",
+            strings.globalTryAgain,
             retryAction ?: {}
         )
     }
 
     private fun getUnknownErrorMessage(): String {
-        return "Oops. Something occurred. Try again later."
+        return strings.errorUnknown
     }
 }

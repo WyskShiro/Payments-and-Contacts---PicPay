@@ -1,5 +1,7 @@
 package will.shiro.desafiopicpay.util.error
 
+import will.shiro.desafiopicpay.util.resources.AndroidStrings
+
 class DialogData(
         val title: String?,
         val message: String = "",
@@ -47,9 +49,9 @@ class DialogData(
             )
         }
 
-        fun error(message: String, confirmButtonText: String? = null, onConfirm: (() -> Unit)? = null, onDismiss: (() -> Unit)? = null, cancelable: Boolean? = true): DialogData {
+        fun error(strings: AndroidStrings, message: String, confirmButtonText: String? = null, onConfirm: (() -> Unit)? = null, onDismiss: (() -> Unit)? = null, cancelable: Boolean? = true): DialogData {
             return DialogData(
-                "Oops",
+                strings.errorTitle,
                 message,
                 confirmButtonText,
                 onConfirm,
