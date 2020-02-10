@@ -15,7 +15,7 @@ require 'json'
 
 # Reads the XML generated from lint
 
-doc = JSON.parse(File.read("/home/runner/work/DesafioPicPay/DesafioPicPay/presentation/build/reports/ktlint/ktlintMainSourceSetCheck.json"))
+doc = JSON.parse(File.read("/home/runner/work/Desafio-PicPay-Android-iOS/Desafio-PicPay-Android-iOS/data/build/reports/ktlint/ktlintAndroidTestSourceSetCheck.json"))
 doc.each do |result|
 result["errors"].each do |error|
   file = result["file"].split(module_name)
