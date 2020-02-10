@@ -23,18 +23,6 @@ class DialogData(
             )
         }
 
-        fun confirmWithoutTitle(message: String, onConfirm: () -> Unit, confirmButtonText: String? = null, cancelable: Boolean? = true): DialogData {
-            return DialogData(
-                null,
-                message,
-                confirmButtonText,
-                onConfirm,
-                null,
-                null,
-                cancelable
-            )
-        }
-
         fun dismiss(title: String, message: String, onDismiss: (() -> Unit)? = null, dismissButtonText: String? = null, cancelable: Boolean? = true): DialogData {
             return DialogData(
                 title,
