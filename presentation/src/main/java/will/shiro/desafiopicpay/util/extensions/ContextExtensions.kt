@@ -1,0 +1,43 @@
+package will.shiro.desafiopicpay.util.extensions
+
+import android.app.AlarmManager
+import android.app.AlertDialog
+import android.app.Dialog
+import android.app.PendingIntent
+import android.content.*
+import android.net.Uri
+import android.webkit.URLUtil
+import android.widget.Toast
+import androidx.annotation.ColorRes
+import androidx.annotation.StringRes
+import androidx.core.content.ContextCompat
+import will.shiro.desafiopicpay.R
+import will.shiro.desafiopicpay.util.error.DialogData
+
+fun Context.showDialog(dialogData: DialogData): Dialog {
+    val builder = AlertDialog.Builder(this)
+    builder.setTitle(dialogData.title)
+    builder.setMessage(dialogData.message)
+    if (dialogData.confirmButtonText == null && dialogData.onConfirm == null) {
+        builder.setPositiveButton(dialogData.dismissButtonText, dialogData.onDismiss)
+    } else {
+        builder.setPositiveButton(dialogData.confirmButtonText, dialogData.onConfirm
+                ?: dialogData.onDismiss)
+        if (dialogData.dismissButtonText != null || dialogData.onDismiss != null) {
+            builder.setNegativeButton(dialogData.dismissButtonText, dialogData.onDismiss)
+        }
+    }
+    dialogData.onDismiss?.let { builder.setOnCancelListener { it() } }
+    builder.setCancelable(dialogData.cancelable ?: true)
+    return builder.show()
+}
+
+fun AlertDialog.Builder.setPositiveButton(buttonText: String?, onClick: (() -> Unit)?) = setPositiveButton(
+        buttonText ?: context.getString(R.string.global_ok),
+        onClick?.let { { _: DialogInterface, _: Int -> it() } }
+)
+
+fun AlertDialog.Builder.setNegativeButton(buttonText: String?, onClick: (() -> Unit)?) = setNegativeButton(
+        buttonText ?: context.getString(R.string.global_cancel),
+        onClick?.let { { _: DialogInterface, _: Int -> it() } }
+)

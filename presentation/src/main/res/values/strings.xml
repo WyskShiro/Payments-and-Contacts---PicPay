@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">DesafioPicPay</string>
+    <string name="global_yes">Sim</string>
+    <string name="global_no">Não</string>
+    <string name="global_success">Sucesso!</string>
+    <string name="global_wait">Aguarde…</string>
+    <string name="global_try_again">Tentar novamente</string>
+    <string name="global_cancel">Cancelar</string>
+    <string name="global_ok">OK</string>
+
+    <string name="error_title">Oops!</string>
+    <string name="error_unknown">Não foi possível completar a operação. Tente novamente mais tarde. Se o problema persistir entre em contato conosco.</string>
+</resources>
