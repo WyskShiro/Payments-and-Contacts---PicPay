@@ -1,2 +1,4 @@
 rootProject.name='DesafioPicPay'
-include ':app'
+include ':presentation'
+include ':domain'
+include ':data'
