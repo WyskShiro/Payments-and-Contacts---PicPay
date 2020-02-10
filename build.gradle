@@ -31,7 +31,7 @@ buildscript {
         rxJavaVersion = '2.2.2'
         rxAndroidVersion = '2.1.1'
         rxKotlinVersion = '2.1.0'
-        rxJava2AdapterVersion = '1.0.0'
+        rxJava2AdapterVersion = '2.6.0'
         sthetoVersion = '1.5.0'
         supportVersion = '28.0.0'
         viewModelVersion = '2.2.0'
