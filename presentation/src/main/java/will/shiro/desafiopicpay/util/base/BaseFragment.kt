@@ -1,25 +1,41 @@
 package will.shiro.desafiopicpay.util.base
 
 import android.app.Dialog
-import android.os.Bundle
+import android.content.Context
 import android.widget.Toast
+import androidx.annotation.CallSuper
+import androidx.annotation.LayoutRes
+import androidx.fragment.app.Fragment
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasAndroidInjector
 import dagger.android.support.AndroidSupportInjection
-import dagger.android.support.DaggerFragment
 import will.shiro.desafiopicpay.util.error.DialogData
 import will.shiro.desafiopicpay.util.extensions.observeEvent
 import will.shiro.desafiopicpay.util.extensions.showDialog
+import javax.inject.Inject
 
-abstract class BaseFragment : DaggerFragment() {
+abstract class BaseFragment(
+    @LayoutRes contentLayoutId: Int
+) : Fragment(contentLayoutId), HasAndroidInjector {
+
+    @Inject
+    lateinit var androidInjector: DispatchingAndroidInjector<Any>
 
     private var dialog: Dialog? = null
 
     abstract val baseViewModel: BaseViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
-        super.onCreate(savedInstanceState)
+        super.onAttach(context)
     }
 
+    override fun androidInjector(): AndroidInjector<Any?>? {
+        return androidInjector
+    }
+
+    @CallSuper
     open fun subscribeUi() {
         baseViewModel.toast.observeEvent(viewLifecycleOwner, ::onNextToast)
         baseViewModel.dialog.observeEvent(viewLifecycleOwner, ::onGetDialog)

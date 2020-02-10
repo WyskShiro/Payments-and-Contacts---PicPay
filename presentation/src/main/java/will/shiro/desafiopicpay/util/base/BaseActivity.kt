@@ -3,6 +3,7 @@ package will.shiro.desafiopicpay.util.base
 import android.app.Dialog
 import android.os.Bundle
 import android.widget.Toast
+import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import dagger.android.AndroidInjection
@@ -22,8 +23,6 @@ abstract class BaseActivity : AppCompatActivity(), HasAndroidInjector {
 
     override fun androidInjector(): AndroidInjector<Any> = androidInjector
 
-    protected var dialog: Dialog? = null
-
     abstract val baseViewModel: BaseViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +31,7 @@ abstract class BaseActivity : AppCompatActivity(), HasAndroidInjector {
         subscribeUi()
     }
 
+    @CallSuper
     open fun subscribeUi() {
         baseViewModel.toast.observeEvent(this, ::onNextToast)
     }
