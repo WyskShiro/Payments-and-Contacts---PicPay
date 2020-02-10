@@ -2,11 +2,17 @@ import android.text.Editable
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.viewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.textfield.TextInputLayout
 import io.reactivex.disposables.Disposable
 import io.reactivex.subjects.PublishSubject
+import will.shiro.desafiopicpay.util.base.BaseActivity
+import will.shiro.desafiopicpay.util.base.BaseFragment
 import will.shiro.desafiopicpay.util.watcher.SimpleTextWatcher
 
 // TextInputLayout
@@ -46,4 +52,30 @@ fun ImageView.load(url: String) {
 
 fun ImageView.loadCircle(url: String) {
     Glide.with(this).load(url).apply(RequestOptions().circleCrop()).into(this)
+}
+
+inline fun <reified T : ViewModel> BaseFragment.assistedViewModels(
+    crossinline body: () -> T
+): Lazy<T> {
+    return viewModels {
+        object : ViewModelProvider.NewInstanceFactory() {
+            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+                @Suppress("UNCHECKED_CAST")
+                return body() as T
+            }
+        }
+    }
+}
+
+inline fun <reified T : ViewModel> BaseActivity.assistedViewModels(
+    crossinline body: () -> T
+): Lazy<T> {
+    return viewModels {
+        object : ViewModelProvider.NewInstanceFactory() {
+            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+                @Suppress("UNCHECKED_CAST")
+                return body() as T
+            }
+        }
+    }
 }

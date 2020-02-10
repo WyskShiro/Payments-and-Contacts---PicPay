@@ -5,10 +5,7 @@ import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
 import will.shiro.desafiopicpay.PicPayApplication
-import will.shiro.desafiopicpay.util.di.module.ActivityBindingModule
-import will.shiro.desafiopicpay.util.di.module.ApiProviderModule
-import will.shiro.desafiopicpay.util.di.module.ApplicationBindingModule
-import will.shiro.desafiopicpay.util.di.module.MapperModule
+import will.shiro.desafiopicpay.util.di.module.*
 import javax.inject.Singleton
 
 @Singleton
@@ -18,7 +15,9 @@ import javax.inject.Singleton
         ApplicationBindingModule::class,
         ApiProviderModule::class,
         ActivityBindingModule::class,
-        MapperModule::class]
+        MapperModule::class,
+        ViewModelModule::class
+    ]
 )
 interface AppComponent {
 

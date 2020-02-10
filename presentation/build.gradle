@@ -97,4 +97,8 @@ dependencies {
 
     // Constraint layout
     implementation "androidx.constraintlayout:constraintlayout:2.0.0-beta4"
+
+    //Assisted Inject
+    compileOnly "com.squareup.inject:assisted-inject-annotations-dagger2:$daggerAssistedInjectionVersion"
+    kapt "com.squareup.inject:assisted-inject-processor-dagger2:$daggerAssistedInjectionVersion"
 }

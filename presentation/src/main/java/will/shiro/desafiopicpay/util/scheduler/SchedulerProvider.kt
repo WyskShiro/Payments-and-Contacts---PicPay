@@ -1,4 +1,4 @@
-package will.shiro.desafiopicpay.util.extensions
+package will.shiro.desafiopicpay.util.scheduler
 
 import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers

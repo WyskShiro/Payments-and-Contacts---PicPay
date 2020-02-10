@@ -2,6 +2,7 @@ package will.shiro.desafiopicpay.util.extensions
 
 import io.reactivex.Single
 import will.shiro.desafiopicpay.util.error.Placeholder
+import will.shiro.desafiopicpay.util.scheduler.SchedulerProvider
 
 fun <T> Single<T>.defaultSched(schedulerProvider: SchedulerProvider): Single<T> {
     return this.subscribeOn(schedulerProvider.io()).observeOn(schedulerProvider.main())
