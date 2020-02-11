@@ -13,4 +13,28 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
+    <!--
+        Global View Styles
+    -->
+    <style name="ToolbarTitle" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:textSize">32sp</item>
+    </style>
+
+    <!--
+        Contacts list
+    -->
+    <style name="ContactUsername" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="ContactName" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textColor">@color/colorWhite50</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">14sp</item>
+    </style>
 </resources>

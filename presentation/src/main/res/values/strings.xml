@@ -13,5 +13,6 @@
 
     <!-- Contacts Fragment -->
     <string name="contact_title">Contatos</string>
+    <string name="contact_search_hint">A quem você deseja pagar?</string>
 
 </resources>
