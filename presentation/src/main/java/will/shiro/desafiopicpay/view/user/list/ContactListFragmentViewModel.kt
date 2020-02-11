@@ -1,7 +1,10 @@
 package will.shiro.desafiopicpay.view.user.list
 
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.OnLifecycleEvent
+import com.squareup.inject.assisted.AssistedInject
 import io.reactivex.rxkotlin.subscribeBy
 import will.shiro.desafiopicpay.util.base.BaseViewModel
 import will.shiro.desafiopicpay.util.extensions.defaultPlaceholders
@@ -11,7 +14,7 @@ import will.shiro.domain.entity.User
 import will.shiro.domain.interactor.user.GetUsers
 import javax.inject.Inject
 
-class ContactListFragmentViewModel @Inject constructor(
+class ContactListFragmentViewModel @AssistedInject constructor(
     private val schedulerProvider: SchedulerProvider,
     private val getUsers: GetUsers
 ) : BaseViewModel() {
@@ -20,7 +23,8 @@ class ContactListFragmentViewModel @Inject constructor(
 
     private val _users by lazy { MutableLiveData<List<User>>() }
 
-    init {
+    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
+    private fun onCreate() {
         getUsers()
     }
 
@@ -31,5 +35,10 @@ class ContactListFragmentViewModel @Inject constructor(
             .subscribeBy({ setDialog(it, ::getUsers) }) {
                 _users.value = it
             }
+    }
+
+    @AssistedInject.Factory
+    interface Factory {
+        fun create(): ContactListFragmentViewModel
     }
 }

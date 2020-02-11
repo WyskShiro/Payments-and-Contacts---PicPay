@@ -1,6 +1,7 @@
 package will.shiro.desafiopicpay.util.base
 
 import androidx.annotation.CallSuper
+import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,10 +11,10 @@ import will.shiro.desafiopicpay.util.error.ErrorHandler
 import will.shiro.desafiopicpay.util.error.Placeholder
 import javax.inject.Inject
 
-abstract class BaseViewModel : ViewModel() {
-
-    @Inject
-    protected lateinit var errorHandler: ErrorHandler
+abstract class BaseViewModel : ViewModel(), LifecycleObserver {
+//
+//    @Inject
+//    protected lateinit var errorHandler: ErrorHandler
 
     val disposables = CompositeDisposable()
 
@@ -38,11 +39,11 @@ abstract class BaseViewModel : ViewModel() {
         retryAction: (() -> Unit)? = null,
         onDismiss: (() -> Unit)? = null
     ) {
-        setDialog(errorHandler.getDialogData(throwable, retryAction, onDismiss))
+//        setDialog(errorHandler.getDialogData(throwable, retryAction, onDismiss))
     }
 
     fun setDialog(throwable: Throwable) {
-        setDialog(errorHandler.getDialogData(throwable, null, null))
+//        setDialog(errorHandler.getDialogData(throwable, null, null))
     }
 
     fun showToast(message: String) {
