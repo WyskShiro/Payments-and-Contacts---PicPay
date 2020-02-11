@@ -4,7 +4,7 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import will.shiro.desafiopicpay.util.base.BaseFragment
 import will.shiro.desafiopicpay.util.di.scope.FragmentScope
-import will.shiro.desafiopicpay.view.MainFragment
+import will.shiro.desafiopicpay.view.user.list.ContactListFragment
 
 @Module
 abstract class FragmentBindingModule {
@@ -15,5 +15,5 @@ abstract class FragmentBindingModule {
 
     @ContributesAndroidInjector
     @FragmentScope
-    abstract fun contributesMainFragment(): MainFragment
+    abstract fun contributesMainFragment(): ContactListFragment
 }

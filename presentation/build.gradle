@@ -62,10 +62,7 @@ dependencies {
     implementation "com.google.android.material:material:$materialVersion"
 
 
-    // rx
-    implementation "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
-    implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$rxJava2AdapterVersion"
+
 
     // dagger
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"

@@ -9,7 +9,11 @@ dependencies {
 
     // kotlin
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
-    implementation "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
+
+    // rx
+    api "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
+    api "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
+    api "com.squareup.retrofit2:adapter-rxjava2:$rxJava2AdapterVersion"
 
     // dagger
     api "com.google.dagger:dagger:$daggerVersion"

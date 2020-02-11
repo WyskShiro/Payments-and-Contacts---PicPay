@@ -10,4 +10,8 @@
 
     <string name="error_title">Oops!</string>
     <string name="error_unknown">Não foi possível completar a operação. Tente novamente mais tarde. Se o problema persistir entre em contato conosco.</string>
+
+    <!-- Contacts Fragment -->
+    <string name="contact_title">Contatos</string>
+
 </resources>

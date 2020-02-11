@@ -16,7 +16,8 @@ import javax.inject.Singleton
         ApiProviderModule::class,
         ActivityBindingModule::class,
         MapperModule::class,
-        ViewModelModule::class
+        ViewModelModule::class,
+        RepositoryModule::class
     ]
 )
 interface AppComponent {
