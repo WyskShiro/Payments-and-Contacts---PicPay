@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.widget.doOnTextChanged
+import observeChanges
 import setVisible
 import will.shiro.desafiopicpay.databinding.CustomSearchTextBinding
 
@@ -21,6 +22,10 @@ class SearchEditText @JvmOverloads constructor(
 
     init {
         setupTextWatcher()
+    }
+
+    fun observeChanges(callback: (String) -> Unit) {
+        binding.searchEditText.observeChanges(callback)
     }
 
     private fun setupTextWatcher() {
