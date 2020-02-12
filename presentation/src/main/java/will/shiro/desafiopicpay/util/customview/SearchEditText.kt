@@ -1,31 +1,36 @@
 package will.shiro.desafiopicpay.util.customview
 
 import android.content.Context
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.AttributeSet
-import android.view.Gravity
-import androidx.appcompat.widget.AppCompatEditText
-import androidx.core.content.ContextCompat
-import will.shiro.desafiopicpay.R
+import android.view.LayoutInflater
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.widget.doOnTextChanged
+import setVisible
+import will.shiro.desafiopicpay.databinding.CustomSearchTextBinding
 
 class SearchEditText @JvmOverloads constructor(
     context: Context,
     attributeSet: AttributeSet? = null
-) : AppCompatEditText(context, attributeSet) {
+) : ConstraintLayout(context, attributeSet) {
 
-    override fun onTextChanged(
-        text: CharSequence?,
-        start: Int,
-        lengthBefore: Int,
-        lengthAfter: Int
-    ) {
-        text?.let {
+    private val binding: CustomSearchTextBinding = CustomSearchTextBinding.inflate(
+        LayoutInflater.from(context),
+        this,
+        true
+    )
 
-            gravity = if (it.isNotEmpty()) {
-                Gravity.START or Gravity.CENTER_VERTICAL
-            } else {
-                Gravity.CENTER
+    init {
+        setupTextWatcher()
+    }
+
+    private fun setupTextWatcher() {
+        binding.searchEditText.doOnTextChanged { text, _, _, _ ->
+            text?.run {
+                binding.apply {
+                    hintTextView.setVisible(isEmpty())
+                    searchIconImageView.setVisible(isNotEmpty())
+                    searchEditText.isCursorVisible = isNotEmpty()
+                }
             }
         }
     }
