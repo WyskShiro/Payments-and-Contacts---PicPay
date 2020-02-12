@@ -3,67 +3,87 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="showLoading"
+            type="Boolean" />
+    </data>
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.AppBarLayout
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen_20"
-            android:layout_marginEnd="@dimen/dimen_20"
-            android:background="?attr/colorPrimary"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+            android:layout_height="match_parent">
 
-            <com.google.android.material.appbar.CollapsingToolbarLayout
+            <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fitsSystemWindows="true"
-                app:contentScrim="?attr/colorPrimary"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
-                app:titleEnabled="false">
+                android:layout_marginStart="@dimen/dimen_20"
+                android:layout_marginEnd="@dimen/dimen_20"
+                android:background="?attr/colorPrimary"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-                <androidx.appcompat.widget.Toolbar
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:layout_gravity="top"
-                    app:layout_collapseMode="none"
-                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-
-                <LinearLayout
+                <com.google.android.material.appbar.CollapsingToolbarLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:fitsSystemWindows="true"
+                    app:contentScrim="?attr/colorPrimary"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+                    app:titleEnabled="false">
 
-                    <TextView
-                        style="@style/ToolbarTitle"
+                    <androidx.appcompat.widget.Toolbar
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:layout_gravity="top"
+                        app:layout_collapseMode="none"
+                        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dimen_28"
-                        android:layout_marginBottom="@dimen/dimen_24"
-                        android:text="@string/contact_title" />
+                        android:orientation="vertical">
 
-                    <will.shiro.desafiopicpay.util.customview.SearchEditText
-                        android:id="@+id/search_contacts_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dimen_8"
-                        android:layout_marginBottom="@dimen/dimen_8"/>
-                </LinearLayout>
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
-        </com.google.android.material.appbar.AppBarLayout>
+                        <TextView
+                            style="@style/ToolbarTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen_28"
+                            android:layout_marginBottom="@dimen/dimen_24"
+                            android:text="@string/contact_title" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/contact_list_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:fadeScrollbars="false"
-            android:paddingTop="@dimen/dimen_32"
-            android:paddingBottom="@dimen/dimen_24"
-            android:scrollbars="vertical"
-            app:layout_anchorGravity="bottom"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-            tools:listitem="@layout/vh_contact" />
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+                        <will.shiro.desafiopicpay.util.customview.SearchEditText
+                            android:id="@+id/search_contacts_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen_8"
+                            android:layout_marginBottom="@dimen/dimen_8" />
+                    </LinearLayout>
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/contact_list_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:fadeScrollbars="false"
+                android:paddingTop="@dimen/dimen_32"
+                android:paddingBottom="@dimen/dimen_24"
+                android:scrollbars="vertical"
+                app:layout_anchorGravity="bottom"
+                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+                tools:listitem="@layout/vh_contact" />
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="@{showLoading ? View.VISIBLE : View.GONE}" />
+    </FrameLayout>
 </layout>

@@ -7,7 +7,7 @@ import will.shiro.domain.entity.User
 
 class ContactAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var contacts: List<User> = listOf()
+    private var contacts: List<User>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
@@ -18,22 +18,24 @@ class ContactAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as? ContactViewHolder)?.setupBinding(contacts[position])
+        contacts?.getOrNull(position)?.let {
+            (holder as? ContactViewHolder)?.setupBinding(it)
+        }
     }
 
     override fun getItemCount(): Int {
-        return if (contacts.isEmpty()) {
-            1
-        } else {
-            contacts.size
+        return when {
+            contacts == null -> 0
+            contacts!!.isEmpty() -> 1
+            else -> contacts!!.size
         }
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (contacts.isEmpty()) {
-            EMPTY_LIST
-        } else {
-            CONTACT_ITEMS
+        return when {
+            contacts == null -> EMPTY_LIST
+            contacts!!.isEmpty() -> EMPTY_LIST
+            else -> CONTACT_ITEMS
         }
     }
 

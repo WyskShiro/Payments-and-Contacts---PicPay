@@ -19,6 +19,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <EditText
+                style="@style/ContactSearchInput"
                 android:id="@+id/search_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -27,8 +28,7 @@
                 android:paddingStart="56dp"
                 android:cursorVisible="false"
                 android:paddingEnd="@dimen/dimen_16"
-                android:singleLine="true"
-                android:textSize="14sp" />
+                android:singleLine="true"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <ImageView

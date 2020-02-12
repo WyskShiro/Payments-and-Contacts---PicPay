@@ -3,6 +3,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.viewModels
+import androidx.databinding.BindingAdapter
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -36,6 +37,7 @@ fun TextView.observeChanges(callback: (String) -> Unit): Disposable? {
 }
 
 // views
+@BindingAdapter("setVisible")
 fun View.setVisible(visible: Boolean) {
     visibility = if (visible) View.VISIBLE else View.GONE
 }

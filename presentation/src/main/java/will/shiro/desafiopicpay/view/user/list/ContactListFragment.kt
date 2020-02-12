@@ -2,16 +2,15 @@ package will.shiro.desafiopicpay.view.user.list
 
 import android.os.Bundle
 import android.view.View
-import android.widget.EditText
 import androidx.recyclerview.widget.LinearLayoutManager
 import assistedViewModels
-import kotlinx.android.synthetic.main.custom_search_text.view.*
-import observeChanges
 import will.shiro.desafiopicpay.R
 import will.shiro.desafiopicpay.databinding.FragmentContactListBinding
 import will.shiro.desafiopicpay.util.base.BaseFragment
 import will.shiro.desafiopicpay.util.base.BaseViewModel
+import will.shiro.desafiopicpay.util.error.Placeholder
 import will.shiro.desafiopicpay.util.extensions.observeAction
+import will.shiro.domain.entity.User
 import javax.inject.Inject
 
 class ContactListFragment : BaseFragment(R.layout.fragment_contact_list) {
@@ -37,12 +36,9 @@ class ContactListFragment : BaseFragment(R.layout.fragment_contact_list) {
 
     override fun subscribeUi() {
         super.subscribeUi()
-        viewModel.users.observeAction(viewLifecycleOwner) {
-            it?.run(contactAdapter::updateList)
-        }
-        viewModel.searchedUsers.observeAction(viewLifecycleOwner) {
-            it?.run(contactAdapter::updateList)
-        }
+        viewModel.placeholder.observeAction(viewLifecycleOwner, ::onPlaceholder)
+        viewModel.contacts.observeAction(viewLifecycleOwner, ::onContacts)
+        viewModel.searchedContacts.observeAction(viewLifecycleOwner, ::onContacts)
     }
 
     private fun setupRecyclerView() {
@@ -56,5 +52,15 @@ class ContactListFragment : BaseFragment(R.layout.fragment_contact_list) {
 
     private fun setupUi() {
         binding.searchContactsView.observeChanges(viewModel::onSearchText)
+    }
+
+    private fun onContacts(contacts: List<User>?) {
+        contacts?.run(contactAdapter::updateList)
+    }
+
+    private fun onPlaceholder(placeholder: Placeholder?) {
+        placeholder?.let {
+            binding.showLoading = it.visible()
+        }
     }
 }

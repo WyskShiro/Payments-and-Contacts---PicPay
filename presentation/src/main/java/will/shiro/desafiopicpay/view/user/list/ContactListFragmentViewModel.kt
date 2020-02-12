@@ -15,15 +15,15 @@ class ContactListFragmentViewModel @AssistedInject constructor(
     private val getUsers: GetUsers
 ) : BaseViewModel() {
 
-    val users: LiveData<List<User>> get() = _users
-    val searchedUsers: LiveData<List<User>> get() = _searchedUsers
+    val contacts: LiveData<List<User>> get() = _contacts
+    val searchedContacts: LiveData<List<User>> get() = _searchedContacts
 
-    private val _users by lazy { MutableLiveData<List<User>>() }
-    private var _searchedUsers = MutableLiveData<List<User>>()
+    private val _contacts by lazy { MutableLiveData<List<User>>() }
+    private var _searchedContacts = MutableLiveData<List<User>>()
 
     fun onSearchText(text: String) {
-        _users.value?.run {
-            _searchedUsers.value = filter { it.name.contains(text) || it.username.contains(text) }
+        _contacts.value?.run {
+            _searchedContacts.value = filter { it.name.contains(text) || it.username.contains(text) }
         }
     }
 
@@ -37,12 +37,12 @@ class ContactListFragmentViewModel @AssistedInject constructor(
             .defaultPlaceholders(::setPlaceholder)
             .defaultSched(schedulerProvider)
             .subscribeBy(::onGetUsersFailure) {
-                _users.value = it
+                _contacts.value = it
             }
     }
 
     private fun onGetUsersFailure(throwable: Throwable) {
-        _users.value = listOf()
+        _contacts.value = listOf()
         setDialog(throwable, ::getUsers)
     }
 
