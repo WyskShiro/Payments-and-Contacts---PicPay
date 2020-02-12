@@ -55,29 +55,3 @@ fun ImageView.load(url: String) {
 fun ImageView.loadCircle(url: String) {
     Glide.with(this).load(url).apply(RequestOptions().circleCrop()).into(this)
 }
-
-inline fun <reified T : ViewModel> BaseFragment.assistedViewModels(
-    crossinline body: () -> T
-): Lazy<T> {
-    return viewModels {
-        object : ViewModelProvider.NewInstanceFactory() {
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                @Suppress("UNCHECKED_CAST")
-                return body() as T
-            }
-        }
-    }
-}
-
-inline fun <reified T : ViewModel> BaseActivity.assistedViewModels(
-    crossinline body: () -> T
-): Lazy<T> {
-    return viewModels {
-        object : ViewModelProvider.NewInstanceFactory() {
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                @Suppress("UNCHECKED_CAST")
-                return body() as T
-            }
-        }
-    }
-}
