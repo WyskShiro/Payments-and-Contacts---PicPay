@@ -1,12 +1,6 @@
 package will.shiro.desafiopicpay.view
 
-import com.squareup.inject.assisted.AssistedInject
 import will.shiro.desafiopicpay.util.base.BaseViewModel
+import javax.inject.Inject
 
-class MainViewModel @AssistedInject constructor() : BaseViewModel() {
-
-    @AssistedInject.Factory
-    interface Factory {
-        fun create(): MainViewModel
-    }
-}
+class MainViewModel @Inject constructor() : BaseViewModel()

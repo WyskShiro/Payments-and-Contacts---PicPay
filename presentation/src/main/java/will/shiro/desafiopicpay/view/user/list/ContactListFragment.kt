@@ -2,14 +2,17 @@ package will.shiro.desafiopicpay.view.user.list
 
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import assistedViewModels
 import will.shiro.desafiopicpay.R
 import will.shiro.desafiopicpay.databinding.FragmentContactListBinding
 import will.shiro.desafiopicpay.util.base.BaseFragment
 import will.shiro.desafiopicpay.util.base.BaseViewModel
+import will.shiro.desafiopicpay.util.di.ViewModelFactory
 import will.shiro.desafiopicpay.util.error.Placeholder
 import will.shiro.desafiopicpay.util.extensions.observeAction
+import will.shiro.desafiopicpay.view.MainViewModel
 import will.shiro.domain.entity.User
 import javax.inject.Inject
 
@@ -18,11 +21,11 @@ class ContactListFragment : BaseFragment(R.layout.fragment_contact_list) {
     override val baseViewModel: BaseViewModel get() = viewModel
 
     @Inject
-    lateinit var homeFactory: ContactListFragmentViewModel.Factory
-
-    private val viewModel: ContactListFragmentViewModel by assistedViewModels {
-        homeFactory.create()
+    protected lateinit var viewModelFactory: ViewModelFactory<ContactListFragmentViewModel>
+    protected val viewModel by lazy {
+        ViewModelProvider(this, viewModelFactory).get(ContactListFragmentViewModel::class.java)
     }
+
     private lateinit var binding: FragmentContactListBinding
     private val contactAdapter = ContactAdapter()
 
@@ -36,9 +39,11 @@ class ContactListFragment : BaseFragment(R.layout.fragment_contact_list) {
 
     override fun subscribeUi() {
         super.subscribeUi()
-        viewModel.placeholder.observeAction(viewLifecycleOwner, ::onPlaceholder)
-        viewModel.contacts.observeAction(viewLifecycleOwner, ::onContacts)
-        viewModel.searchedContacts.observeAction(viewLifecycleOwner, ::onContacts)
+        with(viewModel) {
+            placeholder.observeAction(viewLifecycleOwner, ::onPlaceholder)
+            contacts.observeAction(viewLifecycleOwner, ::onContacts)
+            searchedContacts.observeAction(viewLifecycleOwner, ::onContacts)
+        }
     }
 
     private fun setupRecyclerView() {

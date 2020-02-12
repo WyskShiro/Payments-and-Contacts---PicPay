@@ -5,7 +5,6 @@ import will.shiro.domain.util.logger.Logger
 import javax.inject.Inject
 
 class ErrorHandler @Inject constructor(
-    private val logger: Logger,
     private val strings: AndroidStrings
 ) {
 
@@ -23,7 +22,6 @@ class ErrorHandler @Inject constructor(
     }
 
     fun getPlaceholder(throwable: Throwable, retryAction: (() -> Unit)?): Placeholder {
-        logger.e(throwable)
         return Placeholder.Action(
             getUnknownErrorMessage(),
             strings.globalTryAgain,
