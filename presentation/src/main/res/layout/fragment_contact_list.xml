@@ -10,9 +10,9 @@
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
             android:layout_marginStart="@dimen/dimen_20"
             android:layout_marginEnd="@dimen/dimen_20"
+            android:background="?attr/colorPrimary"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -36,22 +36,35 @@
                     android:orientation="vertical">
 
                     <TextView
+                        style="@style/ToolbarTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dimen_28"
                         android:layout_marginBottom="@dimen/dimen_24"
-                        android:text="@string/contact_title"
-                        style="@style/ToolbarTitle"/>
+                        android:text="@string/contact_title" />
 
-                    <EditText
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:textSize="14sp"
-                        android:gravity="center"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dimen_8"
                         android:layout_marginBottom="@dimen/dimen_8"
-                        android:hint="@string/contact_search_hint"
-                        android:background="@drawable/edit_text_background" />
+                        android:background="@drawable/edit_text_background"
+                        android:gravity="center"
+                        android:textSize="14sp"
+                        app:hintEnabled="false"
+                        app:endIconMode="clear_text">
+
+                        <will.shiro.desafiopicpay.util.customview.SearchEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:paddingStart="@dimen/dimen_16"
+                            android:paddingEnd="@dimen/dimen_16"
+                            android:hint="@string/contact_search_hint"
+                            android:background="@drawable/edit_text_background"
+                            android:gravity="start|center_vertical"
+                            android:textSize="14sp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
@@ -60,10 +73,13 @@
             android:id="@+id/contact_list_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:clipToPadding="false"
             android:fadeScrollbars="false"
+            android:paddingTop="@dimen/dimen_32"
+            android:paddingBottom="@dimen/dimen_24"
             android:scrollbars="vertical"
-            tools:listitem="@layout/vh_contact"
             app:layout_anchorGravity="bottom"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+            tools:listitem="@layout/vh_contact" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
