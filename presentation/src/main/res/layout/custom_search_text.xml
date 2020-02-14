@@ -10,8 +10,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/edit_text_background"
-            android:gravity="center"
-            android:textSize="14sp"
             app:endIconMode="clear_text"
             app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
@@ -19,16 +17,16 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <EditText
-                style="@style/ContactSearchInput"
                 android:id="@+id/search_edit_text"
+                style="@style/ContactSearchInput"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/edit_text_background"
-                android:gravity="start|center_vertical"
-                android:paddingStart="56dp"
                 android:cursorVisible="false"
+                android:gravity="start|center_vertical"
+                android:paddingStart="@dimen/dimen_56"
                 android:paddingEnd="@dimen/dimen_16"
-                android:singleLine="true"/>
+                android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <ImageView

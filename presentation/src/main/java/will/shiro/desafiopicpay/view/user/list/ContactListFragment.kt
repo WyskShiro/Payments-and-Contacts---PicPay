@@ -11,7 +11,6 @@ import will.shiro.desafiopicpay.util.base.BaseViewModel
 import will.shiro.desafiopicpay.util.di.ViewModelFactory
 import will.shiro.desafiopicpay.util.error.Placeholder
 import will.shiro.desafiopicpay.util.extensions.observeAction
-import will.shiro.desafiopicpay.view.MainViewModel
 import will.shiro.domain.entity.User
 import javax.inject.Inject
 

@@ -1,7 +1,6 @@
 package will.shiro.desafiopicpay.util.error
 
 import will.shiro.desafiopicpay.util.resources.AndroidStrings
-import will.shiro.domain.util.logger.Logger
 import javax.inject.Inject
 
 class ErrorHandler @Inject constructor(

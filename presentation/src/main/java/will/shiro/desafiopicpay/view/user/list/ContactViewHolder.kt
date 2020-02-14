@@ -13,10 +13,12 @@ class ContactViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun setupBinding(user: User) {
-        binding.contactNameTextView.text = user.name
-        binding.contactUsernameTextView.text = user.username
-        Glide.with(binding.root.context).clear(binding.contactPhotoImageView)
-        binding.contactPhotoImageView.loadCircle(user.img)
+        with(binding) {
+            Glide.with(root.context).clear(contactPhotoImageView)
+            contactNameTextView.text = user.name
+            contactUsernameTextView.text = user.username
+            contactPhotoImageView.loadCircle(user.img)
+        }
     }
 
     companion object {

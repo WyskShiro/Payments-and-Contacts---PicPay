@@ -12,8 +12,8 @@
 
         <ImageView
             android:id="@+id/contact_photo_image_view"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="@dimen/contact_list_photo"
+            android:layout_height="@dimen/contact_list_photo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/ic_launcher_background" />

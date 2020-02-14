@@ -10,4 +10,9 @@
     <dimen name="dimen_28">28dp</dimen>
     <dimen name="dimen_32">32dp</dimen>
     <dimen name="dimen_40">40dp</dimen>
+    <dimen name="dimen_48">48dp</dimen>
+    <dimen name="dimen_56">56dp</dimen>
+
+    <!-- Specifics -->
+    <dimen name="contact_list_photo">52dp</dimen>
 </resources>

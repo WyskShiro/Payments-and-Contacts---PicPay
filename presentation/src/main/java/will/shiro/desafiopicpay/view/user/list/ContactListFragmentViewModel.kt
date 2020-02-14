@@ -1,6 +1,9 @@
 package will.shiro.desafiopicpay.view.user.list
 
-import androidx.lifecycle.*
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.OnLifecycleEvent
 import io.reactivex.rxkotlin.subscribeBy
 import will.shiro.desafiopicpay.util.base.BaseViewModel
 import will.shiro.desafiopicpay.util.extensions.defaultPlaceholders
@@ -23,7 +26,8 @@ class ContactListFragmentViewModel @Inject constructor(
 
     fun onSearchText(text: String) {
         _contacts.value?.run {
-            _searchedContacts.value = filter { it.name.contains(text) || it.username.contains(text) }
+            _searchedContacts.value =
+                filter { it.name.contains(text) || it.username.contains(text) }
         }
     }
 

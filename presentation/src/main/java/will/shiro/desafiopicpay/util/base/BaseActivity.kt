@@ -1,6 +1,5 @@
 package will.shiro.desafiopicpay.util.base
 
-import android.app.Dialog
 import android.os.Bundle
 import android.widget.Toast
 import androidx.annotation.CallSuper
