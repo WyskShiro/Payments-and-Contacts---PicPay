@@ -5,16 +5,16 @@ declared_trivial = github.pr_title.include? "#trivial"
 warn("PR is classed as Work in Progress") if github.pr_title.include? "[WIP]"
 
 # Warn when there is a big PR
-warn("Merge Request way too big") if git.lines_of_code > 500
+warn("Merge Request way too big") if git.lines_of_code > 800
 
-if github.pr_body.length < 5
+if github.pr_body.length < 30
   fail "Please provide a summary in the Pull Request description"
 end
 
 require 'json'
 
 # Reads the XML generated from lint
-@base_path = "/home/runner/work/Desafio-PicPay-Android-iOS/Desafio-PicPay-Android-iOS"
+base_path = "/home/runner/work/Desafio-PicPay-Android-iOS/Desafio-PicPay-Android-iOS"
 @modules = ["presentation", "data", "domain"]
 for module_name in @modules do
   doc = JSON.parse(File.read("#{base_path}/#{module_name}/build/reports/ktlint/ktlintMainSourceSetCheck.json"))
