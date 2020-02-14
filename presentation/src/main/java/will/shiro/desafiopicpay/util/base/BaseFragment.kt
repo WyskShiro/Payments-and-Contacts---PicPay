@@ -2,6 +2,8 @@ package will.shiro.desafiopicpay.util.base
 
 import android.app.Dialog
 import android.content.Context
+import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
@@ -29,6 +31,11 @@ abstract class BaseFragment(
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
         super.onAttach(context)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        subscribeUi()
     }
 
     override fun androidInjector(): AndroidInjector<Any?>? {

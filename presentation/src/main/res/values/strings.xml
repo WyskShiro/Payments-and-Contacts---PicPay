@@ -7,7 +7,13 @@
     <string name="global_try_again">Tentar novamente</string>
     <string name="global_cancel">Cancelar</string>
     <string name="global_ok">OK</string>
+    <string name="global_no_search_results">Oops, não encontramos nenhum resultado para a sua busca</string>
 
     <string name="error_title">Oops!</string>
     <string name="error_unknown">Não foi possível completar a operação. Tente novamente mais tarde. Se o problema persistir entre em contato conosco.</string>
+
+    <!-- Contacts Fragment -->
+    <string name="contact_title">Contatos</string>
+    <string name="contact_search_hint">A quem você deseja pagar?</string>
+
 </resources>

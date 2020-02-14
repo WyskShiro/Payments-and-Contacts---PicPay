@@ -1,6 +1,7 @@
 package will.shiro.desafiopicpay.util.base
 
 import androidx.annotation.CallSuper
+import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,7 +11,7 @@ import will.shiro.desafiopicpay.util.error.ErrorHandler
 import will.shiro.desafiopicpay.util.error.Placeholder
 import javax.inject.Inject
 
-abstract class BaseViewModel : ViewModel() {
+abstract class BaseViewModel : ViewModel(), LifecycleObserver {
 
     @Inject
     protected lateinit var errorHandler: ErrorHandler

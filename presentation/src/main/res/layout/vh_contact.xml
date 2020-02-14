@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_20"
+        android:layout_marginEnd="@dimen/dimen_20"
+        android:layout_marginBottom="@dimen/dimen_24">
+
+        <ImageView
+            android:id="@+id/contact_photo_image_view"
+            android:layout_width="@dimen/contact_list_photo"
+            android:layout_height="@dimen/contact_list_photo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_launcher_background" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_16"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/contact_photo_image_view"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/contact_username_text_view"
+                style="@style/ContactUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Apelido legal" />
+
+            <TextView
+                android:id="@+id/contact_name_text_view"
+                style="@style/ContactName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_2"
+                tools:text="Nome legal" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
