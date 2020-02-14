@@ -12,8 +12,8 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import will.shiro.data.client.ApiClient
-import will.shiro.data.client.ApiService
+import will.shiro.data.api.client.ApiClient
+import will.shiro.data.api.client.ApiService
 import will.shiro.desafiopicpay.BuildConfig
 import java.security.KeyPairGenerator
 import javax.inject.Named
