@@ -14,15 +14,18 @@ end
 require 'json'
 
 # Reads the XML generated from lint
-
-doc = JSON.parse(File.read("/home/runner/work/Desafio-PicPay-Android-iOS/Desafio-PicPay-Android-iOS/data/build/reports/ktlint/ktlintAndroidTestSourceSetCheck.json"))
-doc.each do |result|
-result["errors"].each do |error|
-  file = result["file"].split(module_name)
-  file.shift
-  file = module_name + file.join(module_name)
-  message = error["message"]
-  line = error["line"]
-  fail(message, file: file, line: line)
- end
+@base_path = "/home/runner/work/Desafio-PicPay-Android-iOS/Desafio-PicPay-Android-iOS"
+@modules = ["presentation", "data", "domain"]
+for module_name in @modules do
+  doc = JSON.parse(File.read("#{base_path}/#{module_name}/build/reports/ktlint/ktlintMainSourceSetCheck.json"))
+  doc.each do |result|
+    result["errors"].each do |error|
+      file = result["file"].split(module_name)
+      file.shift
+      file = module_name + file.join(module_name)
+      message = error["message"]
+      line = error["line"]
+      fail(message, file: file, line: line)
+     end
+    end
 end

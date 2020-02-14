@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import assistedViewModels
 import will.shiro.desafiopicpay.R
 import will.shiro.desafiopicpay.databinding.FragmentContactListBinding
 import will.shiro.desafiopicpay.util.base.BaseFragment

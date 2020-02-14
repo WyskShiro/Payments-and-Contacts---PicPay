@@ -3,8 +3,6 @@ package will.shiro.desafiopicpay.view
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
-import assistedViewModels
 import will.shiro.desafiopicpay.R
 import will.shiro.desafiopicpay.databinding.ActivityMainBinding
 import will.shiro.desafiopicpay.util.base.BaseActivity
