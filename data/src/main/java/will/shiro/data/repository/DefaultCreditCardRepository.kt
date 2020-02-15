@@ -14,7 +14,7 @@ class DefaultCreditCardRepository @Inject constructor(
     private val realm: Realm,
     private val realmCreditCardMapper: Mapper<RealmCreditCard, CreditCard>,
     private val creditCardMapper: Mapper<CreditCard, RealmCreditCard>
-): CreditCardRepository {
+) : CreditCardRepository {
 
     override fun getOne(): Single<CreditCard> {
         return realm.where<RealmCreditCard>()

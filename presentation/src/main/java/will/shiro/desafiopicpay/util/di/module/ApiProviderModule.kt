@@ -15,6 +15,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import will.shiro.data.api.client.ApiClient
 import will.shiro.data.api.client.ApiService
 import will.shiro.desafiopicpay.BuildConfig
+import will.shiro.desafiopicpay.util.di.ANDROID_KEY_STORE
+import will.shiro.desafiopicpay.util.di.NAMED_ENCRYPTION_KEY
 import java.security.KeyPairGenerator
 import javax.inject.Named
 import javax.inject.Singleton
@@ -80,7 +82,6 @@ object ApiProviderModule {
         }
     }
 
-
     @Provides
     @Singleton
     fun provideRealm(): Realm {
@@ -88,15 +89,15 @@ object ApiProviderModule {
     }
 
     @Provides
-    @Named("ENCRYPTION_KEY")
+    @Named(NAMED_ENCRYPTION_KEY)
     @Singleton
     fun provideEncryptionKey(): ByteArray {
         val kpg: KeyPairGenerator = KeyPairGenerator.getInstance(
             KeyProperties.KEY_ALGORITHM_EC,
-            "AndroidKeyStore"
+            ANDROID_KEY_STORE
         )
         val parameterSpec: KeyGenParameterSpec = KeyGenParameterSpec.Builder(
-            "AndroidKeyStore",
+            ANDROID_KEY_STORE,
             KeyProperties.PURPOSE_SIGN or KeyProperties.PURPOSE_VERIFY
         ).run {
             setDigests(KeyProperties.DIGEST_SHA256, KeyProperties.DIGEST_SHA512)

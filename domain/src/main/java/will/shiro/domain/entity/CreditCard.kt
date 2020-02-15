@@ -9,4 +9,4 @@ data class CreditCard(
     val ownerName: String = "",
     val expirationDate: Date = Date(),
     val cvv: Int = 0
-): Serializable
+) : Serializable

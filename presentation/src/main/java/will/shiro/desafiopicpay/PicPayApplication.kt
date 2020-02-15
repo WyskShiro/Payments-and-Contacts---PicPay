@@ -1,15 +1,13 @@
 package will.shiro.desafiopicpay
 
-import android.security.keystore.KeyGenParameterSpec
-import android.security.keystore.KeyProperties
 import androidx.multidex.MultiDexApplication
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
 import io.realm.Realm
 import io.realm.RealmConfiguration
+import will.shiro.desafiopicpay.util.di.NAMED_ENCRYPTION_KEY
 import will.shiro.desafiopicpay.util.di.component.DaggerAppComponent
-import java.security.KeyPairGenerator
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -19,7 +17,7 @@ class PicPayApplication : MultiDexApplication(), HasAndroidInjector {
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>
 
     @Inject
-    @Named("ENCRYPTION_KEY")
+    @Named(NAMED_ENCRYPTION_KEY)
     lateinit var encryptionKey: ByteArray
 
     override fun onCreate() {
