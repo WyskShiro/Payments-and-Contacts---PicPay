@@ -5,6 +5,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dimen_56"
         android:orientation="vertical">
 
         <ScrollView
@@ -23,7 +24,6 @@
                     style="@style/ToolbarTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dimen_32"
                     android:text="@string/create_credit_card" />
 
                 <will.shiro.desafiopicpay.util.customview.InputLayout
