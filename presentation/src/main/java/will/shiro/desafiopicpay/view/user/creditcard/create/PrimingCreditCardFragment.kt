@@ -3,6 +3,7 @@ package will.shiro.desafiopicpay.view.user.creditcard.create
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
+import setClick
 import will.shiro.desafiopicpay.R
 import will.shiro.desafiopicpay.databinding.FragmentPrimingCreditCardBinding
 import will.shiro.desafiopicpay.util.base.BaseFragment
@@ -24,5 +25,10 @@ class PrimingCreditCardFragment : BaseFragment(R.layout.fragment_priming_credit_
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentPrimingCreditCardBinding.bind(view)
+        setupUi()
+    }
+
+    private fun setupUi() {
+        binding.backImageView.setClick(::popFragment)
     }
 }

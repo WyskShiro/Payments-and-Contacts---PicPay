@@ -3,7 +3,6 @@ package will.shiro.desafiopicpay.view.user.list
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import will.shiro.desafiopicpay.R
@@ -12,6 +11,7 @@ import will.shiro.desafiopicpay.util.base.BaseFragment
 import will.shiro.desafiopicpay.util.base.BaseViewModel
 import will.shiro.desafiopicpay.util.di.ViewModelFactory
 import will.shiro.desafiopicpay.util.error.Placeholder
+import will.shiro.desafiopicpay.util.extensions.navigateSafe
 import will.shiro.desafiopicpay.util.extensions.observeAction
 import will.shiro.desafiopicpay.util.extensions.observeEvent
 import will.shiro.domain.entity.User
@@ -68,8 +68,11 @@ class ContactListFragment : BaseFragment(R.layout.fragment_contact_list) {
     }
 
     private fun onGoToPrimingCreditCard(user: User?) {
-        findNavController().navigate(
-            ContactListFragmentDirections.actionUserListFragmentToPrimingCreditCardFragment())
+        user?.let {
+            findNavController().navigateSafe(
+                ContactListFragmentDirections.actionUserListFragmentToPrimingCreditCardFragment(it)
+            )
+        }
     }
 
     private fun onGoToPaymentCreditCard(user: User?) {

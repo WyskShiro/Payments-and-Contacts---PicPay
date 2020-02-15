@@ -23,5 +23,9 @@
         android:id="@+id/primingCreditCardFragment"
         android:name="will.shiro.desafiopicpay.view.user.creditcard.create.PrimingCreditCardFragment"
         android:label="PrimingCreditCardFragment"
-        tools:layout="@layout/fragment_priming_credit_card" />
+        tools:layout="@layout/fragment_priming_credit_card" >
+        <argument
+            android:name="user"
+            app:argType="will.shiro.domain.entity.User" />
+    </fragment>
 </navigation>

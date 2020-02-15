@@ -25,8 +25,5 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        binding.backImageView.setOnClickListener {
-            Toast.makeText(this, "Teste", Toast.LENGTH_SHORT).show()
-        }
     }
 }
