@@ -83,12 +83,6 @@ object ApiProviderModule {
     }
 
     @Provides
-    @Singleton
-    fun provideRealm(): Realm {
-        return Realm.getDefaultInstance()
-    }
-
-    @Provides
     @Named(NAMED_ENCRYPTION_KEY)
     @Singleton
     fun provideEncryptionKey(): ByteArray {

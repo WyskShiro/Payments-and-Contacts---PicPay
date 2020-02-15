@@ -35,7 +35,7 @@ class PicPayApplication : MultiDexApplication(), HasAndroidInjector {
         Realm.init(applicationContext)
         val config = RealmConfiguration.Builder()
             .deleteRealmIfMigrationNeeded()
-            .encryptionKey(encryptionKey)
+//            .encryptionKey(encryptionKey)
             .build()
         Realm.setDefaultConfiguration(config)
     }

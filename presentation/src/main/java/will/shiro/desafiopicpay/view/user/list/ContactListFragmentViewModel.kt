@@ -5,18 +5,21 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.OnLifecycleEvent
 import io.reactivex.rxkotlin.subscribeBy
+import will.shiro.data.util.throwable.NoItemFoundLocalThrowable
 import will.shiro.desafiopicpay.util.base.BaseViewModel
 import will.shiro.desafiopicpay.util.base.Event
 import will.shiro.desafiopicpay.util.extensions.defaultPlaceholders
 import will.shiro.desafiopicpay.util.extensions.defaultSched
 import will.shiro.desafiopicpay.util.scheduler.SchedulerProvider
 import will.shiro.domain.entity.User
+import will.shiro.domain.interactor.creditcard.GetCreditCard
 import will.shiro.domain.interactor.user.GetUsers
 import javax.inject.Inject
 
 class ContactListFragmentViewModel @Inject constructor(
     private val schedulerProvider: SchedulerProvider,
-    private val getUsers: GetUsers
+    private val getUsers: GetUsers,
+    private val getCreditCard: GetCreditCard
 ) : BaseViewModel() {
 
     val contacts: LiveData<List<User>> get() = _contacts
@@ -35,8 +38,12 @@ class ContactListFragmentViewModel @Inject constructor(
     }
 
     fun onContactSelected(user: User) {
-        // TODO consultar no BD se tem ou não um cartão de crédito
-        _goToPrimingCreditCard.value = Event(user)
+        getCreditCard.execute()
+            .defaultSched(schedulerProvider)
+            .defaultPlaceholders(::setPlaceholder)
+            .subscribeBy({ onContactSelectedFailure(it, user) }) {
+                // TODO enviar por sinal para a tela finalizar transferencia o user e o creditcard retornado (pair)
+            }
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
@@ -56,5 +63,17 @@ class ContactListFragmentViewModel @Inject constructor(
     private fun onGetUsersFailure(throwable: Throwable) {
         _contacts.value = listOf()
         setDialog(throwable, ::getUsers)
+    }
+
+    private fun onContactSelectedFailure(throwable: Throwable, user: User) {
+        when (throwable) {
+            is NoItemFoundLocalThrowable -> {
+                _goToPrimingCreditCard.value = Event(user)
+                // TODO mandar para a tela de cadastro de cartão de crédito
+            }
+            else -> setDialog(throwable, {
+                onContactSelected(user)
+            })
+        }
     }
 }
