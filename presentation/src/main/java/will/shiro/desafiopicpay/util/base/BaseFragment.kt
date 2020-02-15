@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
@@ -53,6 +54,10 @@ abstract class BaseFragment(
             dialog?.dismiss()
             dialog = activity?.showDialog(it)
         }
+    }
+
+    protected fun popFragment() {
+        findNavController().popBackStack()
     }
 
     private fun onNextToast(text: String?) {

@@ -49,3 +49,9 @@ fun ImageView.load(url: String) {
 fun ImageView.loadCircle(url: String) {
     Glide.with(this).load(url).apply(RequestOptions().circleCrop()).into(this)
 }
+
+fun View.setClick(callBack: () -> Unit) {
+    setOnClickListener {
+        callBack()
+    }
+}

@@ -5,7 +5,9 @@ import androidx.recyclerview.widget.RecyclerView
 import will.shiro.desafiopicpay.util.customview.NoResultsFoundViewHolder
 import will.shiro.domain.entity.User
 
-class ContactAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ContactAdapter(
+    private val onContactSelected: (User) -> Unit
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var contacts: List<User>? = null
 
@@ -19,7 +21,7 @@ class ContactAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         contacts?.getOrNull(position)?.let {
-            (holder as? ContactViewHolder)?.setupBinding(it)
+            (holder as? ContactViewHolder)?.setupBinding(it, onContactSelected)
         }
     }
 
