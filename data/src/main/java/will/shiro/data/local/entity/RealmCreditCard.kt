@@ -4,11 +4,11 @@ import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 import java.util.*
 
-data class RealmCreditCard(
+open class RealmCreditCard(
     @PrimaryKey
     var id: Long = 0,
-    val number: String = "",
-    val ownerName: String = "",
-    val expirationDate: Date = Date(),
-    val cvv: Int = 0
+    var number: String = "",
+    var ownerName: String = "",
+    var expirationDate: Date = Date(),
+    var cvv: Int = 0
 ) : RealmObject()
