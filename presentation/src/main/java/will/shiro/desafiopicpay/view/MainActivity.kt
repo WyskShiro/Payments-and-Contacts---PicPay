@@ -1,7 +1,6 @@
 package will.shiro.desafiopicpay.view
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import will.shiro.desafiopicpay.R
