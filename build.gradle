@@ -73,7 +73,7 @@ subprojects {
         debug = true
         verbose = true
         ignoreFailures = true
-        disabledRules = ["import-ordering", "no-wildcard-imports", "filename"]
+        disabledRules = ["final-newline", "import-ordering", "max-line-length", "no-wildcard-imports", "filename"]
         reporters {
             reporter "checkstyle"
             reporter "json"
