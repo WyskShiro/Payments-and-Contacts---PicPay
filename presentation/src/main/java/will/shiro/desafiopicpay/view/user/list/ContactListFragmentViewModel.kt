@@ -11,6 +11,7 @@ import will.shiro.desafiopicpay.util.base.Event
 import will.shiro.desafiopicpay.util.extensions.defaultPlaceholders
 import will.shiro.desafiopicpay.util.extensions.defaultSched
 import will.shiro.desafiopicpay.util.scheduler.SchedulerProvider
+import will.shiro.domain.entity.CreditCard
 import will.shiro.domain.entity.User
 import will.shiro.domain.interactor.creditcard.GetCreditCard
 import will.shiro.domain.interactor.user.GetUsers
@@ -25,10 +26,12 @@ class ContactListFragmentViewModel @Inject constructor(
     val contacts: LiveData<List<User>> get() = _contacts
     val searchedContacts: LiveData<List<User>> get() = _searchedContacts
     val goToPrimingCreditCard: LiveData<Event<User>> get() = _goToPrimingCreditCard
+    val goToPaymentCreditCard: LiveData<Event<Pair<User, CreditCard>>> get() = _goToPaymentCreditCard
 
     private val _contacts by lazy { MutableLiveData<List<User>>() }
     private val _searchedContacts by lazy { MutableLiveData<List<User>>() }
     private val _goToPrimingCreditCard by lazy { MutableLiveData<Event<User>>() }
+    private val _goToPaymentCreditCard by lazy { MutableLiveData<Event<Pair<User, CreditCard>>>() }
 
     fun onSearchText(text: String) {
         _contacts.value?.run {
@@ -42,7 +45,7 @@ class ContactListFragmentViewModel @Inject constructor(
             .defaultSched(schedulerProvider)
             .defaultPlaceholders(::setPlaceholder)
             .subscribeBy({ onContactSelectedFailure(it, user) }) {
-                // TODO enviar por sinal para a tela finalizar transferencia o user e o creditcard retornado (pair)
+                _goToPaymentCreditCard.value = Event(user to it)
             }
     }
 
@@ -69,7 +72,6 @@ class ContactListFragmentViewModel @Inject constructor(
         when (throwable) {
             is NoItemFoundLocalThrowable -> {
                 _goToPrimingCreditCard.value = Event(user)
-                // TODO mandar para a tela de cadastro de cartão de crédito
             }
             else -> setDialog(throwable, {
                 onContactSelected(user)

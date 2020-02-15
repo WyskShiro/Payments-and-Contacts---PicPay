@@ -14,6 +14,7 @@ import will.shiro.desafiopicpay.util.error.Placeholder
 import will.shiro.desafiopicpay.util.extensions.navigateSafe
 import will.shiro.desafiopicpay.util.extensions.observeAction
 import will.shiro.desafiopicpay.util.extensions.observeEvent
+import will.shiro.domain.entity.CreditCard
 import will.shiro.domain.entity.User
 import javax.inject.Inject
 
@@ -47,6 +48,7 @@ class ContactListFragment : BaseFragment(R.layout.fragment_contact_list) {
             contacts.observeAction(viewLifecycleOwner, ::onContacts)
             searchedContacts.observeAction(viewLifecycleOwner, ::onContacts)
             goToPrimingCreditCard.observeEvent(viewLifecycleOwner, ::onGoToPrimingCreditCard)
+            goToPaymentCreditCard.observeEvent(viewLifecycleOwner, ::onGoToPaymentCreditCard)
         }
     }
 
@@ -75,8 +77,15 @@ class ContactListFragment : BaseFragment(R.layout.fragment_contact_list) {
         }
     }
 
-    private fun onGoToPaymentCreditCard(user: User?) {
-
+    private fun onGoToPaymentCreditCard(userWithCreditCard: Pair<User, CreditCard>?) {
+        userWithCreditCard?.run {
+            findNavController().navigateSafe(
+                ContactListFragmentDirections.actionUserListFragmentToPaymentCreditCardFragment(
+                    first,
+                    second
+                )
+            )
+        }
     }
 
     private fun onPlaceholder(placeholder: Placeholder?) {

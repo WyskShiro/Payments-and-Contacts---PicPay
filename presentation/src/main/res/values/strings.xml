@@ -21,4 +21,7 @@
     <string name="priming_credit_card_description">Para fazer pagamentos para outras\npessoas você precisa cadastrar um\ncartão de crédito pessoal.</string>
     <string name="priming_credit_card_create">Cadastrar cartão</string>
 
+    <!-- Payment Credit Card Fragment -->
+    <string name="payment_credit_card_mask">R$</string>
+
 </resources>
