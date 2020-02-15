@@ -1,4 +1,4 @@
-package will.shiro.data.entity
+package will.shiro.data.api.entity
 
 import com.google.gson.annotations.SerializedName
 

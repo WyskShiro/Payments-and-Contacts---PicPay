@@ -27,6 +27,7 @@ buildscript {
         materialVersion = '1.1.0'
         multidexVersion = '2.0.1'
         navigationVersion = '2.2.0'
+        realmVersion = '7.0.0-beta-SNAPSHOT'
         retroFitRxJavaAdapterVersion = '1.0.0'
         retrofitVersion = '2.6.0'
         rxJavaVersion = '2.2.2'
@@ -48,6 +49,9 @@ buildscript {
         maven {
             url "https://plugins.gradle.org/m2/"
         }
+        maven {
+            url 'http://oss.jfrog.org/artifactory/oss-snapshot-local'
+        }
         jcenter()
     }
 
@@ -56,6 +60,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "org.jlleitschuh.gradle:ktlint-gradle:9.1.0"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigationVersion"
+        classpath "io.realm:realm-gradle-plugin:$realmVersion"
     }
 }
 
@@ -86,6 +91,9 @@ allprojects {
         jcenter()
         maven {
             url 'https://maven.google.com/'
+        }
+        maven {
+            url 'http://oss.jfrog.org/artifactory/oss-snapshot-local'
         }
     }
 }
