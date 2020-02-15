@@ -24,4 +24,10 @@
     <!-- Payment Credit Card Fragment -->
     <string name="payment_credit_card_mask">R$</string>
 
+    <!-- Create Credit Card Fragment -->
+    <string name="create_credit_card">Cadastrar cartão</string>
+    <string name="create_credit_card_number_hint">Número do cartão</string>
+    <string name="create_credit_card_owner_name_hint">Nome do titular</string>
+    <string name="create_credit_card_expiration_date_hint">Vencimento</string>
+    <string name="create_credit_card_cvv_hint">CVV</string>
 </resources>

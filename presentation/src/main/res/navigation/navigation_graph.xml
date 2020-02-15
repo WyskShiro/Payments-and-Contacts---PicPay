@@ -8,7 +8,6 @@
     <fragment
         android:id="@+id/userListFragment"
         android:name="will.shiro.desafiopicpay.view.user.list.ContactListFragment"
-        android:label="@string/contact_title"
         tools:layout="@layout/fragment_contact_list">
 
         <action
@@ -16,27 +15,35 @@
             app:destination="@id/primingCreditCardFragment"
             app:enterAnim="@anim/enter_fragment"
             app:exitAnim="@anim/exit_animation"
-            app:popExitAnim="@anim/exit_animation"
-            app:popEnterAnim="@anim/pop_enter_fragment"/>
+            app:popEnterAnim="@anim/pop_enter_fragment"
+            app:popExitAnim="@anim/exit_animation" />
 
         <action
             android:id="@+id/action_userListFragment_to_paymentCreditCardFragment"
             app:destination="@id/paymentCreditCardFragment"
             app:enterAnim="@anim/enter_fragment"
             app:exitAnim="@anim/exit_animation"
-            app:popExitAnim="@anim/exit_animation"
-            app:popEnterAnim="@anim/pop_enter_fragment"/>
+            app:popEnterAnim="@anim/pop_enter_fragment"
+            app:popExitAnim="@anim/exit_animation" />
     </fragment>
 
     <fragment
         android:id="@+id/primingCreditCardFragment"
         android:name="will.shiro.desafiopicpay.view.user.creditcard.create.PrimingCreditCardFragment"
         android:label="PrimingCreditCardFragment"
-        tools:layout="@layout/fragment_priming_credit_card" >
+        tools:layout="@layout/fragment_priming_credit_card">
 
         <argument
             android:name="user"
             app:argType="will.shiro.domain.entity.User" />
+
+        <action
+            android:id="@+id/action_primingCreditCardFragment_to_createCreditCardFragment"
+            app:destination="@id/createCreditCardFragment"
+            app:enterAnim="@anim/enter_fragment"
+            app:exitAnim="@anim/exit_animation"
+            app:popEnterAnim="@anim/pop_enter_fragment"
+            app:popExitAnim="@anim/exit_animation" />
     </fragment>
 
     <fragment
@@ -52,5 +59,16 @@
         <argument
             android:name="creditCard"
             app:argType="will.shiro.domain.entity.CreditCard" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/createCreditCardFragment"
+        android:name="will.shiro.desafiopicpay.view.user.creditcard.create.CreateCreditCardFragment"
+        android:label="CreateCreditCardFragment"
+        tools:layout="@layout/fragment_create_credit_card">
+
+        <argument
+            android:name="user"
+            app:argType="will.shiro.domain.entity.User" />
     </fragment>
 </navigation>
