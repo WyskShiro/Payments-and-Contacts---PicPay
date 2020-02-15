@@ -12,12 +12,15 @@ class ContactViewHolder(
     private val binding: VhContactBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun setupBinding(user: User) {
+    fun setupBinding(user: User, onContactSelected: (User) -> Unit) {
         with(binding) {
             Glide.with(root.context).clear(contactPhotoImageView)
             contactNameTextView.text = user.name
             contactUsernameTextView.text = user.username
             contactPhotoImageView.loadCircle(user.img)
+            root.setOnClickListener {
+                onContactSelected(user)
+            }
         }
     }
 

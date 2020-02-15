@@ -3,6 +3,8 @@ package will.shiro.desafiopicpay.view.user.list
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import will.shiro.desafiopicpay.R
 import will.shiro.desafiopicpay.databinding.FragmentContactListBinding
@@ -11,6 +13,7 @@ import will.shiro.desafiopicpay.util.base.BaseViewModel
 import will.shiro.desafiopicpay.util.di.ViewModelFactory
 import will.shiro.desafiopicpay.util.error.Placeholder
 import will.shiro.desafiopicpay.util.extensions.observeAction
+import will.shiro.desafiopicpay.util.extensions.observeEvent
 import will.shiro.domain.entity.User
 import javax.inject.Inject
 
@@ -25,7 +28,9 @@ class ContactListFragment : BaseFragment(R.layout.fragment_contact_list) {
     }
 
     private lateinit var binding: FragmentContactListBinding
-    private val contactAdapter = ContactAdapter()
+    private val contactAdapter by lazy {
+        ContactAdapter(viewModel::onContactSelected)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -41,6 +46,7 @@ class ContactListFragment : BaseFragment(R.layout.fragment_contact_list) {
             placeholder.observeAction(viewLifecycleOwner, ::onPlaceholder)
             contacts.observeAction(viewLifecycleOwner, ::onContacts)
             searchedContacts.observeAction(viewLifecycleOwner, ::onContacts)
+            goToPrimingCreditCard.observeEvent(viewLifecycleOwner, ::onGoToPrimingCreditCard)
         }
     }
 
@@ -59,6 +65,15 @@ class ContactListFragment : BaseFragment(R.layout.fragment_contact_list) {
 
     private fun onContacts(contacts: List<User>?) {
         contacts?.run(contactAdapter::updateList)
+    }
+
+    private fun onGoToPrimingCreditCard(user: User?) {
+        findNavController().navigate(
+            ContactListFragmentDirections.actionUserListFragmentToPrimingCreditCardFragment())
+    }
+
+    private fun onGoToPaymentCreditCard(user: User?) {
+
     }
 
     private fun onPlaceholder(placeholder: Placeholder?) {

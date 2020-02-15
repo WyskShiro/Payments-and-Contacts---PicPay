@@ -9,5 +9,19 @@
         android:id="@+id/userListFragment"
         android:name="will.shiro.desafiopicpay.view.user.list.ContactListFragment"
         android:label="@string/contact_title"
-        tools:layout="@layout/fragment_contact_list" />
+        tools:layout="@layout/fragment_contact_list">
+        <action
+            android:id="@+id/action_userListFragment_to_primingCreditCardFragment"
+            app:destination="@id/primingCreditCardFragment"
+            app:enterAnim="@anim/enter_fragment"
+            app:exitAnim="@anim/exit_animation"
+            app:popExitAnim="@anim/exit_animation"
+            app:popEnterAnim="@anim/pop_enter_fragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/primingCreditCardFragment"
+        android:name="will.shiro.desafiopicpay.view.user.creditcard.create.PrimingCreditCardFragment"
+        android:label="PrimingCreditCardFragment"
+        tools:layout="@layout/fragment_priming_credit_card" />
 </navigation>

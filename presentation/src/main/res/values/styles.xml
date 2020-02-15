@@ -20,7 +20,7 @@
     <style name="ToolbarTitle" parent="TextAppearance.AppCompat.Title">
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:fontFamily">@font/roboto_bold</item>
-        <item name="android:textSize">32sp</item>
+        <item name="android:textSize">28sp</item>
     </style>
 
     <style name="NoResultsFoundText" parent="TextAppearance.AppCompat.Title">
@@ -55,5 +55,28 @@
         <item name="android:textColor">@color/colorWhite50</item>
         <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textSize">14sp</item>
+    </style>
+
+    <!--
+        Priming Credit Card
+    -->
+
+    <style name="PrimingCreditCard" parent="ToolbarTitle">
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="PrimingCreditCardDescription" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textColor">@color/colorWhite80</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="PrimingCreditCardCreate" parent="TextAppearance.AppCompat.Button">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textAllCaps">false</item>
     </style>
 </resources>
