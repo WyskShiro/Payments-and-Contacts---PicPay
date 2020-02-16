@@ -2,7 +2,6 @@ package will.shiro.desafiopicpay.view.user.creditcard.payment
 
 import android.os.Bundle
 import android.view.View
-import android.view.WindowManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import observeChanges

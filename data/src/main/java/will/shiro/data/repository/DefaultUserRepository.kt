@@ -2,7 +2,6 @@ package will.shiro.data.repository
 
 import io.reactivex.Single
 import will.shiro.data.api.client.ApiClient
-import will.shiro.data.api.entity.ApiTransaction
 import will.shiro.data.api.entity.ApiTransactionRequest
 import will.shiro.data.api.entity.ApiTransactionResponse
 import will.shiro.data.api.entity.ApiUser

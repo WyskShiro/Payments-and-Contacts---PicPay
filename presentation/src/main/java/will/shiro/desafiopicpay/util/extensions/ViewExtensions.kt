@@ -2,9 +2,7 @@ import android.text.Editable
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.textfield.TextInputLayout
 import io.reactivex.disposables.Disposable
 import io.reactivex.subjects.PublishSubject

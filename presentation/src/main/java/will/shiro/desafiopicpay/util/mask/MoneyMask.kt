@@ -5,13 +5,12 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import will.shiro.desafiopicpay.R
 import will.shiro.desafiopicpay.util.watcher.SimpleTextWatcher
-import will.shiro.domain.util.extension.ONLY_NUMBERS_PATTERN
 import will.shiro.domain.util.extension.onlyNumbers
 
 class MoneyMask(
     private val editText: EditText,
     private val textView: TextView
-): SimpleTextWatcher() {
+) : SimpleTextWatcher() {
     var oldText = editText.text.toString()
     var isUpdating = false
 
@@ -43,7 +42,11 @@ class MoneyMask(
         }
     }
 
-    private fun insertSymbol(text: String, position: Int, symbol: String = DECIMAL_SEPARATOR): String {
+    private fun insertSymbol(
+        text: String,
+        position: Int,
+        symbol: String = DECIMAL_SEPARATOR
+    ): String {
         return text.substring(0 until position) +
                 symbol + text.substring(position until text.length)
     }
