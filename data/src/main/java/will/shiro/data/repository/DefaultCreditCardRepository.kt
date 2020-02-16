@@ -3,6 +3,7 @@ package will.shiro.data.repository
 import io.reactivex.Single
 import io.reactivex.SingleEmitter
 import io.realm.Realm
+import io.realm.exceptions.RealmMigrationNeededException
 import io.realm.kotlin.where
 import will.shiro.data.local.entity.RealmCreditCard
 import will.shiro.data.util.mapper.Mapper
@@ -29,19 +30,12 @@ class DefaultCreditCardRepository @Inject constructor(
 
     override fun addOrUpdate(creditCard: CreditCard): Single<CreditCard> {
         return Single.create<CreditCard> { _emitter ->
-            Realm.getDefaultInstance().executeTransactionAsync({ _realm ->
+            Realm.getDefaultInstance().executeTransaction { _realm ->
                 _realm.copyToRealmOrUpdate(creditCardMapper.transform(creditCard))
-            }, {
-                onAddOrUpdateSuccess(_emitter)
-            }, {
-                _emitter.onError(it)
-            })
-        }
-    }
-
-    private fun onAddOrUpdateSuccess(emitter: SingleEmitter<CreditCard>) {
-        Realm.getDefaultInstance().where<RealmCreditCard>().findFirst()?.let {
-            emitter.onSuccess(realmCreditCardMapper.transform(it))
+                _realm.where<RealmCreditCard>().findFirst()?.let {
+                    _emitter.onSuccess(realmCreditCardMapper.transform(it))
+                }
+            }
         }
     }
 }

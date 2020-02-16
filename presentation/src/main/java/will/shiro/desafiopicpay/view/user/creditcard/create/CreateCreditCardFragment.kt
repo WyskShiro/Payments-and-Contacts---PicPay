@@ -5,6 +5,7 @@ import android.view.View
 import android.view.WindowManager
 import androidx.lifecycle.ViewModelProvider
 import observeChanges
+import setClick
 import setVisible
 import will.shiro.desafiopicpay.R
 import will.shiro.desafiopicpay.databinding.FragmentCreateCreditCardBinding
@@ -53,6 +54,7 @@ class CreateCreditCardFragment : BaseFragment(R.layout.fragment_create_credit_ca
                 viewModel.onInputTextChanged(it, CreditCardFormFields.CVV)
             }
             CVVEditConfigurations.apply(cvvInput.textInputEditText)
+            createButton.setClick(viewModel::saveCreditCard)
         }
     }
 
