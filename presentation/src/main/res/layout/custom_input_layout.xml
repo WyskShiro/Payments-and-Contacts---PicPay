@@ -14,10 +14,13 @@
             tools:hint="@string/create_credit_card_number_hint">
 
             <com.google.android.material.textfield.TextInputEditText
+                style="@style/CreateCreditCardEditText"
                 android:id="@+id/text_input_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorWhite40" />
+                android:backgroundTint="@color/colorWhite40"
+                android:imeOptions="actionNext"
+                android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 </layout>

@@ -38,7 +38,7 @@
 
         <Button
             android:id="@+id/create_button"
-            style="@style/PrimingCreditCardCreate"
+            style="@style/PrimaryButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"

@@ -9,11 +9,12 @@
         android:orientation="vertical">
 
         <ScrollView
+            android:id="@+id/scroll_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fillViewport="true">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dimen_20"
@@ -21,30 +22,44 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/toolbar"
                     style="@style/ToolbarTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/create_credit_card" />
+                    android:text="@string/create_credit_card"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <will.shiro.desafiopicpay.util.customview.InputLayout
                     android:id="@+id/number_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dimen_32"
-                    app:hintText="@{@string/create_credit_card_number_hint}" />
+                    app:hintText="@{@string/create_credit_card_number_hint}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
                 <will.shiro.desafiopicpay.util.customview.InputLayout
                     android:id="@+id/owner_name_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dimen_32"
-                    app:hintText="@{@string/create_credit_card_owner_name_hint}" />
+                    app:hintText="@{@string/create_credit_card_owner_name_hint}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/number_input" />
 
                 <LinearLayout
+                    android:id="@+id/expiration_date_cvv_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dimen_32"
-                    android:weightSum="2">
+                    android:weightSum="2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/owner_name_input">
 
                     <will.shiro.desafiopicpay.util.customview.InputLayout
                         android:id="@+id/expiration_date_input"
@@ -62,7 +77,24 @@
                         android:layout_weight="1"
                         app:hintText="@{@string/create_credit_card_cvv_hint}" />
                 </LinearLayout>
-            </LinearLayout>
+
+                <Button
+                    android:id="@+id/create_button"
+                    style="@style/PrimaryButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_32"
+                    android:layout_marginBottom="@dimen/dimen_12"
+                    android:background="@drawable/shape_button_green"
+                    android:foreground="?android:selectableItemBackground"
+                    android:text="@string/global_save"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/expiration_date_cvv_container"
+                    app:layout_constraintVertical_bias="1.0" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
     </LinearLayout>
 </layout>
