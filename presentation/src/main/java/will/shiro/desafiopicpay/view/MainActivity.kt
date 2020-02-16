@@ -1,8 +1,11 @@
 package will.shiro.desafiopicpay.view
 
 import android.os.Bundle
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import setClick
 import will.shiro.desafiopicpay.R
 import will.shiro.desafiopicpay.databinding.ActivityMainBinding
 import will.shiro.desafiopicpay.util.base.BaseActivity
@@ -24,5 +27,19 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        setupNavController()
+    }
+
+    private fun setupNavController() {
+        val navController = findNavController(R.id.main_navigation_fragment)
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            binding.backImageView.isVisible = when (destination.id) {
+                R.id.userListFragment -> false
+                else -> true
+            }
+        }
+        binding.backImageView.setClick {
+            navController.popBackStack()
+        }
     }
 }

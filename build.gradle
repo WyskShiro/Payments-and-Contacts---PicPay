@@ -26,7 +26,7 @@ buildscript {
         logginInterceptorVersion = '3.10.0'
         materialVersion = '1.1.0'
         multidexVersion = '2.0.1'
-        navigationVersion = '2.2.0'
+        navigationVersion = '2.2.1'
         realmVersion = '7.0.0-beta-SNAPSHOT'
         retroFitRxJavaAdapterVersion = '1.0.0'
         retrofitVersion = '2.6.0'

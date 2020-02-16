@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -13,5 +13,16 @@
             android:layout_height="match_parent"
             app:defaultNavHost="true"
             app:navGraph="@navigation/navigation_graph" />
-    </LinearLayout>
+
+        <ImageView
+            android:id="@+id/back_image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_4"
+            android:layout_marginTop="@dimen/dimen_12"
+            android:foreground="?android:selectableItemBackground"
+            android:paddingStart="@dimen/dimen_4"
+            android:paddingEnd="@dimen/dimen_4"
+            android:src="@drawable/ic_back_green" />
+    </FrameLayout>
 </layout>

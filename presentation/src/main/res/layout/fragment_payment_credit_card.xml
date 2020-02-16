@@ -1,28 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/back_image_view"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guild"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:layout_marginStart="@dimen/dimen_4"
-            android:layout_marginTop="@dimen/dimen_12"
-            android:foreground="?android:selectableItemBackground"
-            android:padding="@dimen/dimen_8"
-            android:src="@drawable/ic_back_green" />
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5"/>
 
         <LinearLayout
+            android:id="@+id/payment_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            app:layout_constraintVertical_chainStyle="spread_inside"
+            app:layout_constraintBottom_toTopOf="@id/create_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/contact_photo_image_view"
@@ -32,13 +35,60 @@
 
             <TextView
                 android:id="@+id/contact_username_text_view"
+                style="@style/PaymentWhiteText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="zelda.williams"/>
+                android:layout_marginTop="@dimen/dimen_8"
+                tools:text="zelda.williams" />
 
             <!-- TODO Criar Custom View -->
             <include
-                layout="@layout/custom_money_input_view" />
+                layout="@layout/custom_money_input_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_32" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/name_text_view"
+                    style="@style/PaymentWhiteText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Mastercard" />
+
+                <TextView
+                    android:id="@+id/last_numbers_text_view"
+                    style="@style/PaymentWhiteText"
+                    android:layout_marginStart="@dimen/dimen_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="1234" />
+
+                <TextView
+                    style="@style/PaymentEditCreditCard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Editar" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+
+        <Button
+            android:id="@+id/create_button"
+            style="@style/PrimaryButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_32"
+            android:layout_marginBottom="@dimen/dimen_12"
+            android:background="@drawable/shape_button_green"
+            android:foreground="?android:selectableItemBackground"
+            android:text="@string/global_save"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/payment_container"
+            app:layout_constraintVertical_bias="1.0" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

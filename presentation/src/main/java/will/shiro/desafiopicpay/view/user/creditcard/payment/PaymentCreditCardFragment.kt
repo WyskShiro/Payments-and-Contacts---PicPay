@@ -2,6 +2,7 @@ package will.shiro.desafiopicpay.view.user.creditcard.payment
 
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import androidx.lifecycle.ViewModelProvider
 import will.shiro.desafiopicpay.R
 import will.shiro.desafiopicpay.databinding.FragmentPaymentCreditCardBinding
@@ -23,6 +24,7 @@ class PaymentCreditCardFragment : BaseFragment(R.layout.fragment_payment_credit_
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         binding = FragmentPaymentCreditCardBinding.bind(view)
     }
 }
