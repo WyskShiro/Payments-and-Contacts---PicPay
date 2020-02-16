@@ -7,28 +7,29 @@ import will.shiro.desafiopicpay.util.di.scope.FragmentScope
 import will.shiro.desafiopicpay.view.user.creditcard.create.CreateCreditCardFragment
 import will.shiro.desafiopicpay.view.user.creditcard.create.PrimingCreditCardFragment
 import will.shiro.desafiopicpay.view.user.creditcard.payment.PaymentCreditCardFragment
+import will.shiro.desafiopicpay.view.user.creditcard.payment.PaymentCreditCardProvider
 import will.shiro.desafiopicpay.view.user.list.ContactListFragment
 
 @Module
 abstract class FragmentBindingModule {
 
-    @ContributesAndroidInjector
     @FragmentScope
+    @ContributesAndroidInjector
     abstract fun contributesBaseFragment(): BaseFragment
 
-    @ContributesAndroidInjector
     @FragmentScope
+    @ContributesAndroidInjector
     abstract fun contributesContactListFragment(): ContactListFragment
 
-    @ContributesAndroidInjector
     @FragmentScope
+    @ContributesAndroidInjector
     abstract fun contributesPrimingCreditCardFragment(): PrimingCreditCardFragment
 
-    @ContributesAndroidInjector
     @FragmentScope
+    @ContributesAndroidInjector(modules = [PaymentCreditCardProvider::class])
     abstract fun contributesPaymentCreditCardFragment(): PaymentCreditCardFragment
 
-    @ContributesAndroidInjector
     @FragmentScope
+    @ContributesAndroidInjector
     abstract fun contributesCreateCreditCardFragment(): CreateCreditCardFragment
 }

@@ -9,6 +9,8 @@
     <string name="global_ok">OK</string>
     <string name="global_no_search_results">Oops, não encontramos nenhum resultado para a sua busca</string>
     <string name="global_save">Salvar</string>
+    <string name="global_pay">Pagar</string>
+    <string name="global_edit">Editar</string>
 
     <string name="error_title">Oops!</string>
     <string name="error_unknown">Não foi possível completar a operação. Tente novamente mais tarde. Se o problema persistir entre em contato conosco.</string>
@@ -24,6 +26,7 @@
 
     <!-- Payment Credit Card Fragment -->
     <string name="payment_credit_card_mask">R$</string>
+    <string name="payment_credit_card_number">%s %s •</string>
 
     <!-- Create Credit Card Fragment -->
     <string name="create_credit_card">Cadastrar cartão</string>

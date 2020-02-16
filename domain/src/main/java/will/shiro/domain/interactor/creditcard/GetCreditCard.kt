@@ -6,10 +6,15 @@ import will.shiro.domain.entity.CreditCard
 import javax.inject.Inject
 
 class GetCreditCard @Inject constructor(
-    private val creditCardRepository: CreditCardRepository
+    private val creditCardRepository: CreditCardRepository,
+    private val getCreditCardName: GetCreditCardName
 ) {
 
     fun execute(): Single<CreditCard> {
-        return creditCardRepository.getOne()
+        return creditCardRepository.getOne().map {
+            it.copy(
+                cardName = getCreditCardName.execute(it)
+            )
+        }
     }
 }

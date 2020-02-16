@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import loadCircle
 import will.shiro.desafiopicpay.databinding.VhContactBinding
+import will.shiro.desafiopicpay.util.extensions.loadCircle
 import will.shiro.domain.entity.User
 
 class ContactViewHolder(

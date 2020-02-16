@@ -10,15 +10,18 @@
             android:id="@+id/text_view"
             style="@style/MoneySymbol"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
             android:text="@string/payment_credit_card_mask" />
 
         <EditText
             android:id="@+id/edit_text"
             style="@style/MoneyValue"
+            android:inputType="number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dimen_8"
-            tools:text="0,00" />
+            android:backgroundTint="@android:color/transparent"
+            android:text="0,00" />
     </LinearLayout>
 </layout>

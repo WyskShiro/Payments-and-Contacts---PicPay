@@ -8,7 +8,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import observeChanges
 import setClick
-import setVisible
 import will.shiro.desafiopicpay.R
 import will.shiro.desafiopicpay.databinding.FragmentCreateCreditCardBinding
 import will.shiro.desafiopicpay.util.base.BaseFragment
@@ -16,6 +15,7 @@ import will.shiro.desafiopicpay.util.base.BaseViewModel
 import will.shiro.desafiopicpay.util.di.ViewModelFactory
 import will.shiro.desafiopicpay.util.extensions.navigateSafe
 import will.shiro.desafiopicpay.util.extensions.observeAction
+import will.shiro.desafiopicpay.util.extensions.setVisible
 import will.shiro.desafiopicpay.util.mask.CVVEditConfigurations
 import will.shiro.desafiopicpay.util.mask.CreditCardEditConfigurations
 import will.shiro.desafiopicpay.util.mask.DateMonthYearEditConfigurations
