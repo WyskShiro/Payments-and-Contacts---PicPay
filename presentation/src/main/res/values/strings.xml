@@ -10,6 +10,7 @@
     <string name="global_no_search_results">Oops, não encontramos nenhum resultado para a sua busca</string>
     <string name="global_save">Salvar</string>
     <string name="global_pay">Pagar</string>
+    <string name="global_edit">Editar</string>
 
     <string name="error_title">Oops!</string>
     <string name="error_unknown">Não foi possível completar a operação. Tente novamente mais tarde. Se o problema persistir entre em contato conosco.</string>

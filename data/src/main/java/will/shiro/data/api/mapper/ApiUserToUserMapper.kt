@@ -10,7 +10,7 @@ class ApiUserToUserMapper @Inject constructor() : Mapper<ApiUser, User>() {
         return User(
             id = t.id,
             name = t.name,
-            img = t.img,
+            img = t.img ?: "",
             username = t.username
         )
     }

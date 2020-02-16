@@ -71,7 +71,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_4"
-                    android:text="@string/global_pay" />
+                    android:text="@string/global_edit" />
             </LinearLayout>
         </LinearLayout>
 
@@ -81,9 +81,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_32"
-            android:background="@drawable/shape_button_green"
+            android:background="@drawable/selector_button_green"
+            android:enabled="false"
             android:foreground="?android:selectableItemBackground"
-            android:text="@string/global_save"
+            android:text="@string/global_pay"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

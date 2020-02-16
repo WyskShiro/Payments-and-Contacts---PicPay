@@ -6,11 +6,13 @@ import android.view.WindowManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import observeChanges
+import setClick
 import will.shiro.desafiopicpay.R
 import will.shiro.desafiopicpay.databinding.FragmentPaymentCreditCardBinding
 import will.shiro.desafiopicpay.util.base.BaseFragment
 import will.shiro.desafiopicpay.util.base.BaseViewModel
 import will.shiro.desafiopicpay.util.di.ViewModelFactory
+import will.shiro.desafiopicpay.util.extensions.observeAction
 import javax.inject.Inject
 
 class PaymentCreditCardFragment : BaseFragment(R.layout.fragment_payment_credit_card) {
@@ -33,11 +35,21 @@ class PaymentCreditCardFragment : BaseFragment(R.layout.fragment_payment_credit_
 
     override fun subscribeUi() {
         super.subscribeUi()
+        viewModel.shouldEnablePay.observeAction(viewLifecycleOwner, ::onShouldEnablePay)
     }
 
     private fun setupUi() {
-        binding.moneyInputLayout.editText.observeChanges(viewModel::onMoneyValueChanged)
-        binding.user = args.user
-        binding.creditCard = args.creditCard
+        with(binding) {
+            moneyInputLayout.editText.observeChanges(viewModel::onMoneyValueChanged)
+            user = args.user
+            creditCard = args.creditCard
+            createButton.setClick(viewModel::onPay)
+        }
+    }
+
+    private fun onShouldEnablePay(shouldEnable: Boolean?) {
+        shouldEnable?.let {
+            binding.createButton.isEnabled = it
+        }
     }
 }
