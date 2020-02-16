@@ -65,8 +65,10 @@ class CreateCreditCardFragment : BaseFragment(R.layout.fragment_create_credit_ca
 
     override fun subscribeUi() {
         super.subscribeUi()
-        viewModel.shouldEnableSave.observeAction(viewLifecycleOwner, ::onShouldEnableSave)
-        viewModel.goToPaymentCreditCard.observeAction(viewLifecycleOwner, ::onGoToPaymentCreditCard)
+        with(viewModel) {
+            shouldEnableSave.observeAction(viewLifecycleOwner, ::onShouldEnableSave)
+            goToPaymentCreditCard.observeAction(viewLifecycleOwner, ::onGoToPaymentCreditCard)
+        }
     }
 
     private fun onShouldEnableSave(shouldEnableSave: Boolean?) {

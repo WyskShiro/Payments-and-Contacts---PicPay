@@ -89,4 +89,30 @@
         <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textSize">16sp</item>
     </style>
+
+    <!--
+        Payment Credit Card
+     -->
+
+    <style name="PaymentWhiteText" parent="ContactUsername">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="PaymentEditCreditCard" parent="MoneySymbol">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorGreen</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <!-- Custom Money Input -->
+    <style name="MoneySymbol" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/colorWhite40</item>
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="MoneyValue" parent="MoneySymbol">
+        <item name="android:textSize">54sp</item>
+    </style>
 </resources>
