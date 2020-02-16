@@ -12,8 +12,9 @@ import will.shiro.desafiopicpay.util.base.BaseFragment
 import will.shiro.desafiopicpay.util.base.BaseViewModel
 import will.shiro.desafiopicpay.util.di.ViewModelFactory
 import will.shiro.desafiopicpay.util.extensions.observeAction
-import will.shiro.desafiopicpay.util.mask.CreditCardMask
-import will.shiro.desafiopicpay.util.mask.DateMonthYearMask
+import will.shiro.desafiopicpay.util.mask.CVVEditConfigurations
+import will.shiro.desafiopicpay.util.mask.CreditCardEditConfigurations
+import will.shiro.desafiopicpay.util.mask.DateMonthYearEditConfigurations
 import will.shiro.domain.util.form.CreditCardFormFields
 import javax.inject.Inject
 
@@ -40,17 +41,18 @@ class CreateCreditCardFragment : BaseFragment(R.layout.fragment_create_credit_ca
             numberInput.textInputEditText.observeChanges {
                 viewModel.onInputTextChanged(it, CreditCardFormFields.NUMBER)
             }
-            CreditCardMask.apply(binding.numberInput.textInputEditText)
+            CreditCardEditConfigurations.apply(numberInput.textInputEditText)
             ownerNameInput.textInputEditText.observeChanges {
                 viewModel.onInputTextChanged(it, CreditCardFormFields.OWNER_NAME)
             }
             expirationDateInput.textInputEditText.observeChanges {
                 viewModel.onInputTextChanged(it, CreditCardFormFields.EXPIRATION_DATE)
             }
-            DateMonthYearMask.apply(binding.expirationDateInput.textInputEditText)
+            DateMonthYearEditConfigurations.apply(expirationDateInput.textInputEditText)
             cvvInput.textInputEditText.observeChanges {
                 viewModel.onInputTextChanged(it, CreditCardFormFields.CVV)
             }
+            CVVEditConfigurations.apply(cvvInput.textInputEditText)
         }
     }
 
@@ -60,11 +62,18 @@ class CreateCreditCardFragment : BaseFragment(R.layout.fragment_create_credit_ca
     }
 
     private fun onShouldEnableSave(shouldEnableSave: Boolean?) {
-        shouldEnableSave?.let {
-            binding.createButton.setVisible(it)
-            if (binding.expirationDateInput.textInputEditText.hasFocus() || binding.cvvInput.textInputEditText.hasFocus()) {
-                binding.scrollView.smoothScrollTo(0, binding.createButton.bottom)
+        shouldEnableSave?.let { _shouldEnableSave ->
+            with(binding) {
+                createButton.setVisible(_shouldEnableSave)
+                if (shouldScrollToBottom()) {
+                    scrollView.smoothScrollTo(0, createButton.bottom)
+                }
             }
         }
+    }
+
+    private fun shouldScrollToBottom(): Boolean {
+        return binding.expirationDateInput.textInputEditText.hasFocus() ||
+                binding.cvvInput.textInputEditText.hasFocus()
     }
 }

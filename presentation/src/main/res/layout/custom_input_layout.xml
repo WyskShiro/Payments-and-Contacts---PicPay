@@ -18,6 +18,7 @@
                 android:id="@+id/text_input_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textPersonName"
                 android:backgroundTint="@color/colorWhite40"
                 android:imeOptions="actionNext"
                 android:singleLine="true" />
