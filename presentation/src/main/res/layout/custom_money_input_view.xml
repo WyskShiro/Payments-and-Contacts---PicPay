@@ -16,9 +16,10 @@
         <EditText
             android:id="@+id/edit_text"
             style="@style/MoneyValue"
+            android:inputType="number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dimen_8"
-            tools:text="0,00" />
+            android:text="0,00" />
     </LinearLayout>
 </layout>

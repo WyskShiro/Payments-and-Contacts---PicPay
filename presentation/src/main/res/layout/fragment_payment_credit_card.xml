@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.5"/>
+            app:layout_constraintGuide_percent="0.5" />
 
         <LinearLayout
             android:id="@+id/payment_container"
@@ -21,11 +21,11 @@
             android:layout_height="0dp"
             android:gravity="center"
             android:orientation="vertical"
-            app:layout_constraintVertical_chainStyle="spread_inside"
             app:layout_constraintBottom_toTopOf="@id/create_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="spread_inside">
 
             <ImageView
                 android:id="@+id/contact_photo_image_view"
@@ -42,8 +42,7 @@
                 tools:text="zelda.williams" />
 
             <!-- TODO Criar Custom View -->
-            <include
-                layout="@layout/custom_money_input_view"
+            <will.shiro.desafiopicpay.util.customview.MoneyInputLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_32" />
@@ -62,9 +61,9 @@
                 <TextView
                     android:id="@+id/last_numbers_text_view"
                     style="@style/PaymentWhiteText"
-                    android:layout_marginStart="@dimen/dimen_4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_4"
                     tools:text="1234" />
 
                 <TextView
