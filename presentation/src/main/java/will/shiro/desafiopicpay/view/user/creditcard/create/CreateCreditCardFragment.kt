@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import observeChanges
 import setClick
 import setVisible
@@ -12,10 +14,12 @@ import will.shiro.desafiopicpay.databinding.FragmentCreateCreditCardBinding
 import will.shiro.desafiopicpay.util.base.BaseFragment
 import will.shiro.desafiopicpay.util.base.BaseViewModel
 import will.shiro.desafiopicpay.util.di.ViewModelFactory
+import will.shiro.desafiopicpay.util.extensions.navigateSafe
 import will.shiro.desafiopicpay.util.extensions.observeAction
 import will.shiro.desafiopicpay.util.mask.CVVEditConfigurations
 import will.shiro.desafiopicpay.util.mask.CreditCardEditConfigurations
 import will.shiro.desafiopicpay.util.mask.DateMonthYearEditConfigurations
+import will.shiro.domain.entity.CreditCard
 import will.shiro.domain.util.form.CreditCardFormFields
 import javax.inject.Inject
 
@@ -29,6 +33,7 @@ class CreateCreditCardFragment : BaseFragment(R.layout.fragment_create_credit_ca
     }
 
     private lateinit var binding: FragmentCreateCreditCardBinding
+    private val args: CreateCreditCardFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -61,6 +66,7 @@ class CreateCreditCardFragment : BaseFragment(R.layout.fragment_create_credit_ca
     override fun subscribeUi() {
         super.subscribeUi()
         viewModel.shouldEnableSave.observeAction(viewLifecycleOwner, ::onShouldEnableSave)
+        viewModel.goToPaymentCreditCard.observeAction(viewLifecycleOwner, ::onGoToPaymentCreditCard)
     }
 
     private fun onShouldEnableSave(shouldEnableSave: Boolean?) {
@@ -71,6 +77,17 @@ class CreateCreditCardFragment : BaseFragment(R.layout.fragment_create_credit_ca
                     scrollView.smoothScrollTo(0, createButton.bottom)
                 }
             }
+        }
+    }
+
+    private fun onGoToPaymentCreditCard(creditCard: CreditCard?) {
+        creditCard?.let {
+            findNavController().navigateSafe(CreateCreditCardFragmentDirections
+                .actionCreateCreditCardFragmentToPaymentCreditCardFragment(
+                    args.user,
+                    it
+                )
+            )
         }
     }
 

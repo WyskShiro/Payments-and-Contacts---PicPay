@@ -70,5 +70,8 @@
         <argument
             android:name="user"
             app:argType="will.shiro.domain.entity.User" />
+        <action
+            android:id="@+id/action_createCreditCardFragment_to_paymentCreditCardFragment"
+            app:destination="@id/paymentCreditCardFragment" />
     </fragment>
 </navigation>

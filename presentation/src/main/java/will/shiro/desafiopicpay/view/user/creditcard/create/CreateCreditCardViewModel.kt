@@ -7,6 +7,7 @@ import will.shiro.desafiopicpay.util.base.BaseViewModel
 import will.shiro.desafiopicpay.util.extensions.defaultPlaceholders
 import will.shiro.desafiopicpay.util.extensions.defaultSched
 import will.shiro.desafiopicpay.util.scheduler.SchedulerProvider
+import will.shiro.domain.entity.CreditCard
 import will.shiro.domain.interactor.creditcard.SaveCreditCard
 import will.shiro.domain.util.form.CreditCardFormFields
 import javax.inject.Inject
@@ -18,8 +19,10 @@ class CreateCreditCardViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     val shouldEnableSave: LiveData<Boolean> get() = _shouldEnableSave
+    val goToPaymentCreditCard: LiveData<CreditCard> get() = _goToPaymentCreditCard
 
     private val _shouldEnableSave = MutableLiveData<Boolean>()
+    private val _goToPaymentCreditCard = MutableLiveData<CreditCard>()
 
     fun onInputTextChanged(text: String, identifier: String) {
         creditCardFormFields.fields[identifier]?.field = text
@@ -33,8 +36,7 @@ class CreateCreditCardViewModel @Inject constructor(
             .subscribeBy({
                 setDialog(it, ::saveCreditCard)
             }) {
-                // TODO tratamento de salvar
-                val a = it
+                _goToPaymentCreditCard.value = it
             }
     }
 }
