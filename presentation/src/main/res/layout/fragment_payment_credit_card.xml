@@ -3,17 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="user"
+            type="will.shiro.domain.entity.User" />
+
+        <variable
+            name="creditCard"
+            type="will.shiro.domain.entity.CreditCard" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="@dimen/dimen_12"
         android:orientation="vertical">
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guild"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.5" />
 
         <LinearLayout
             android:id="@+id/payment_container"
@@ -31,6 +36,7 @@
                 android:id="@+id/contact_photo_image_view"
                 android:layout_width="@dimen/dimen_40"
                 android:layout_height="@dimen/dimen_40"
+                app:loadCircle="@{user.img}"
                 tools:src="@mipmap/ic_launcher" />
 
             <TextView
@@ -39,10 +45,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_8"
+                android:text="@{user.username}"
                 tools:text="zelda.williams" />
 
-            <!-- TODO Criar Custom View -->
             <will.shiro.desafiopicpay.util.customview.MoneyInputLayout
+                android:id="@+id/money_input_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_32" />
@@ -56,21 +63,15 @@
                     style="@style/PaymentWhiteText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="@{@string/payment_credit_card_number(creditCard.cardName, creditCard.lastFourDigits)}"
                     tools:text="Mastercard" />
-
-                <TextView
-                    android:id="@+id/last_numbers_text_view"
-                    style="@style/PaymentWhiteText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dimen_4"
-                    tools:text="1234" />
 
                 <TextView
                     style="@style/PaymentEditCreditCard"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Editar" />
+                    android:layout_marginStart="@dimen/dimen_4"
+                    android:text="@string/global_pay" />
             </LinearLayout>
         </LinearLayout>
 
@@ -80,7 +81,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_32"
-            android:layout_marginBottom="@dimen/dimen_12"
             android:background="@drawable/shape_button_green"
             android:foreground="?android:selectableItemBackground"
             android:text="@string/global_save"

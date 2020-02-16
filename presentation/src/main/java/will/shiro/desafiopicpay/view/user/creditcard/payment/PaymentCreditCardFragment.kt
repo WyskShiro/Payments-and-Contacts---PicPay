@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
+import observeChanges
 import will.shiro.desafiopicpay.R
 import will.shiro.desafiopicpay.databinding.FragmentPaymentCreditCardBinding
 import will.shiro.desafiopicpay.util.base.BaseFragment
@@ -21,10 +23,21 @@ class PaymentCreditCardFragment : BaseFragment(R.layout.fragment_payment_credit_
     }
 
     private lateinit var binding: FragmentPaymentCreditCardBinding
+    val args: PaymentCreditCardFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         binding = FragmentPaymentCreditCardBinding.bind(view)
+        setupUi()
+    }
+
+    override fun subscribeUi() {
+        super.subscribeUi()
+    }
+
+    private fun setupUi() {
+        binding.moneyInputLayout.editText.observeChanges(viewModel::onMoneyValueChanged)
+        binding.user = args.user
+        binding.creditCard = args.creditCard
     }
 }

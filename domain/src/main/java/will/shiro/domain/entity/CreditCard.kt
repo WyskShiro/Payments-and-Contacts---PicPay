@@ -8,5 +8,10 @@ data class CreditCard(
     val number: String = "",
     val ownerName: String = "",
     val expirationDate: Date = Date(),
-    val cvv: Int = 0
-) : Serializable
+    val cvv: Int = 0,
+    val cardName: String = ""
+) : Serializable {
+
+    val lastFourDigits: String
+        get() = number.takeLast(4)
+}

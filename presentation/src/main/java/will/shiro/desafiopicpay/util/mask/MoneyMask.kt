@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat
 import will.shiro.desafiopicpay.R
 import will.shiro.desafiopicpay.util.watcher.SimpleTextWatcher
 import will.shiro.domain.util.extension.ONLY_NUMBERS_PATTERN
+import will.shiro.domain.util.extension.onlyNumbers
 
 class MoneyMask(
     private val editText: EditText,
@@ -18,7 +19,7 @@ class MoneyMask(
         if (isUpdating) {
             isUpdating = false
         } else {
-            var newText = s.toString().replace(Regex(ONLY_NUMBERS_PATTERN), "")
+            var newText = s.toString().onlyNumbers()
             if (newText.length < 3) {
                 newText = "0" + newText.substring(0 until 2)
                 newText = insertSymbol(newText, 1)

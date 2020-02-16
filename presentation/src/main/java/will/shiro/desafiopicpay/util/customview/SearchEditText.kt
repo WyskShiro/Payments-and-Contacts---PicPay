@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.widget.doOnTextChanged
 import observeChanges
-import setVisible
 import will.shiro.desafiopicpay.databinding.CustomSearchTextBinding
+import will.shiro.desafiopicpay.util.extensions.setVisible
 
 class SearchEditText @JvmOverloads constructor(
     context: Context,

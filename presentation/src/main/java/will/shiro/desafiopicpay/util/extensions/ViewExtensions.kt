@@ -31,10 +31,6 @@ fun TextView.observeChanges(callback: (String) -> Unit): Disposable? {
 }
 
 // views
-@BindingAdapter("setVisible")
-fun View.setVisible(visible: Boolean) {
-    visibility = if (visible) View.VISIBLE else View.GONE
-}
 
 fun View.isVisible(): Boolean {
     return visibility == View.VISIBLE
@@ -44,10 +40,6 @@ fun View.isVisible(): Boolean {
 
 fun ImageView.load(url: String) {
     Glide.with(this).load(url).into(this)
-}
-
-fun ImageView.loadCircle(url: String) {
-    Glide.with(this).load(url).apply(RequestOptions().circleCrop()).into(this)
 }
 
 fun View.setClick(callBack: () -> Unit) {
