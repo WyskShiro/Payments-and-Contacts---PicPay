@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="transaction"
+            type="will.shiro.domain.entity.Transaction" />
+
+        <variable
+            name="creditCard"
+            type="will.shiro.domain.entity.CreditCard" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_pull_background"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="@dimen/dimen_40"
+                android:layout_height="@dimen/receipt_pull_indicator"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:background="@drawable/shape_pull_indicator" />
+
+            <TextView
+                style="@style/ReceiptCreditCard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_12"
+                android:layout_marginBottom="@dimen/dimen_12"
+                android:text="@string/global_receipt" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorBackgroundBlack"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/dimen_20"
+            android:paddingEnd="@dimen/dimen_20"
+            android:paddingBottom="@dimen/dimen_56">
+
+            <ImageView
+                android:id="@+id/contact_photo_image_view"
+                android:layout_width="@dimen/receipt_photo"
+                android:layout_height="@dimen/receipt_photo"
+                android:layout_marginTop="@dimen/dimen_20"
+                app:loadCircle="@{transaction.destinationUser.img}"
+                tools:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:id="@+id/contact_username_text_view"
+                style="@style/ReceiptCreditCardUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_12"
+                android:text="@{transaction.destinationUser.username}"
+                tools:text="zelda.username" />
+
+            <TextView
+                android:id="@+id/transaction_time_text_view"
+                style="@style/ReceiptCreditCardTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_8"
+                app:setTransactionDate="@{transaction.timestamp}"
+                tools:text="15/12/2022 às 16:34" />
+
+            <TextView
+                android:id="@+id/transaction_number_text_view"
+                style="@style/ReceiptCreditCardTransactionNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:text="@{@string/receipt_credit_card_transaction(transaction.id)}"
+                tools:text="Transação: 230010" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_1"
+                android:layout_marginTop="@dimen/dimen_24"
+                android:background="@color/colorLineDividerGray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_12"
+                android:weightSum="1">
+
+                <TextView
+                    style="@style/ReceiptCreditCardInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@{@string/receipt_credit_card_info(creditCard.cardName, creditCard.lastFourDigits)}"
+                    tools:text="Cartão Master 1234" />
+
+                <TextView
+                    style="@style/ReceiptCreditCardInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:formatMoneyText="@{transaction.value}"
+                    tools:text="R$ 16,90" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_1"
+                android:layout_marginTop="@dimen/dimen_12"
+                android:background="@color/colorLineDividerGray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_12"
+                android:weightSum="1">
+
+                <TextView
+                    style="@style/ReceiptCreditCardTotal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/receipt_credit_card_total" />
+
+                <TextView
+                    style="@style/ReceiptCreditCardTotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:formatMoneyText="@{transaction.value}"
+                    tools:text="R$ 16,90" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

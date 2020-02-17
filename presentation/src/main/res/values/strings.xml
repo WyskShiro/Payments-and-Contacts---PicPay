@@ -11,6 +11,7 @@
     <string name="global_save">Salvar</string>
     <string name="global_pay">Pagar</string>
     <string name="global_edit">Editar</string>
+    <string name="global_receipt">Recibo</string>
 
     <string name="error_title">Oops!</string>
     <string name="error_unknown">Não foi possível completar a operação. Tente novamente mais tarde. Se o problema persistir entre em contato conosco.</string>
@@ -34,4 +35,11 @@
     <string name="create_credit_card_owner_name_hint">Nome do titular</string>
     <string name="create_credit_card_expiration_date_hint">Vencimento</string>
     <string name="create_credit_card_cvv_hint">CVV</string>
+
+    <!-- Receipt Credit Card Fragment -->
+    <string name="receipt_credit_card_time">%s às %s</string>
+    <string name="receipt_credit_card_transaction">Transação: %d</string>
+    <string name="receipt_credit_card_total">Total pago</string>
+    <string name="receipt_credit_card_value">R$ %s</string>
+    <string name="receipt_credit_card_info">Cartão %s %s</string>
 </resources>

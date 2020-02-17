@@ -8,6 +8,7 @@ import will.shiro.desafiopicpay.view.user.creditcard.create.CreateCreditCardFrag
 import will.shiro.desafiopicpay.view.user.creditcard.create.PrimingCreditCardFragment
 import will.shiro.desafiopicpay.view.user.creditcard.payment.PaymentCreditCardFragment
 import will.shiro.desafiopicpay.view.user.creditcard.payment.PaymentCreditCardProvider
+import will.shiro.desafiopicpay.view.user.creditcard.receipt.ReceiptCreditCardFragment
 import will.shiro.desafiopicpay.view.user.list.ContactListFragment
 
 @Module
@@ -32,4 +33,8 @@ abstract class FragmentBindingModule {
     @FragmentScope
     @ContributesAndroidInjector
     abstract fun contributesCreateCreditCardFragment(): CreateCreditCardFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector
+    abstract fun contributesReceiptCreditCardFragment(): ReceiptCreditCardFragment
 }

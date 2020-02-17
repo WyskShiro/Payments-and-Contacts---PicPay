@@ -1,26 +1,20 @@
 package will.shiro.desafiopicpay.view
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import setClick
 import will.shiro.desafiopicpay.R
 import will.shiro.desafiopicpay.databinding.ActivityMainBinding
 import will.shiro.desafiopicpay.util.base.BaseActivity
 import will.shiro.desafiopicpay.util.base.BaseViewModel
-import will.shiro.desafiopicpay.util.di.ViewModelFactory
-import javax.inject.Inject
 
 class MainActivity : BaseActivity() {
     override val baseViewModel: BaseViewModel get() = viewModel
 
-    @Inject
-    protected lateinit var viewModelFactory: ViewModelFactory<MainViewModel>
-    protected val viewModel by lazy {
-        ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
-    }
+    protected val viewModel: MainViewModel by viewModels()
 
     private lateinit var binding: ActivityMainBinding
 
@@ -34,7 +28,7 @@ class MainActivity : BaseActivity() {
         val navController = findNavController(R.id.main_navigation_fragment)
         navController.addOnDestinationChangedListener { _, destination, _ ->
             binding.backImageView.isVisible = when (destination.id) {
-                R.id.userListFragment -> false
+                R.id.userListFragment, R.id.receiptCreditCardFragment -> false
                 else -> true
             }
         }
