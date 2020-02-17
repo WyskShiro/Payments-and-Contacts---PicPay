@@ -4,12 +4,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.rxkotlin.subscribeBy
 import will.shiro.desafiopicpay.util.base.BaseViewModel
+import will.shiro.desafiopicpay.util.extensions.convertCentToBasicUnit
 import will.shiro.desafiopicpay.util.extensions.defaultPlaceholders
 import will.shiro.desafiopicpay.util.extensions.defaultSched
 import will.shiro.desafiopicpay.util.scheduler.SchedulerProvider
 import will.shiro.desafiopicpay.view.user.creditcard.payment.PaymentCreditCardProvider.NAMED_CREDIT_CARD
 import will.shiro.desafiopicpay.view.user.creditcard.payment.PaymentCreditCardProvider.NAMED_USER
 import will.shiro.domain.entity.CreditCard
+import will.shiro.domain.entity.Transaction
 import will.shiro.domain.entity.TransactionRequest
 import will.shiro.domain.entity.User
 import will.shiro.domain.interactor.user.CreateTransaction
@@ -26,13 +28,15 @@ class PaymentCreditCardViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     val shouldEnablePay: LiveData<Boolean> get() = _shouldEnablePay
+    val paymentSuccess: LiveData<Transaction> get() = _paymentSuccess
     var value = 0f
 
     private val _shouldEnablePay by lazy { MutableLiveData<Boolean>() }
+    private val _paymentSuccess by lazy { MutableLiveData<Transaction>() }
 
     fun onMoneyValueChanged(newValue: String) {
         newValue.onlyNumbers().toFloatOrNull()?.let {
-            value = it
+            value = it.convertCentToBasicUnit()
             _shouldEnablePay.value = it > 0
         } ?: run {
             value = 0f
@@ -53,7 +57,7 @@ class PaymentCreditCardViewModel @Inject constructor(
             .defaultSched(schedulerProvider)
             .defaultPlaceholders(::setPlaceholder)
             .subscribeBy({ setDialog(it, ::onPay) }) {
-                val a = it
+                _paymentSuccess.postValue(it)
                 // TODO tratar erro
                 // TODO finish + mostrar recibo
             }

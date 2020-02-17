@@ -2,6 +2,7 @@ package will.shiro.desafiopicpay.view.user.list
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,7 +15,9 @@ import will.shiro.desafiopicpay.util.error.Placeholder
 import will.shiro.desafiopicpay.util.extensions.navigateSafe
 import will.shiro.desafiopicpay.util.extensions.observeAction
 import will.shiro.desafiopicpay.util.extensions.observeEvent
+import will.shiro.desafiopicpay.view.MainViewModel
 import will.shiro.domain.entity.CreditCard
+import will.shiro.domain.entity.Transaction
 import will.shiro.domain.entity.User
 import javax.inject.Inject
 
@@ -27,6 +30,8 @@ class ContactListFragment : BaseFragment(R.layout.fragment_contact_list) {
     protected val viewModel by lazy {
         ViewModelProvider(this, viewModelFactory).get(ContactListFragmentViewModel::class.java)
     }
+
+    protected val activityViewModel: MainViewModel by activityViewModels()
 
     private lateinit var binding: FragmentContactListBinding
     private val contactAdapter by lazy {
@@ -50,6 +55,7 @@ class ContactListFragment : BaseFragment(R.layout.fragment_contact_list) {
             goToPrimingCreditCard.observeEvent(viewLifecycleOwner, ::onGoToPrimingCreditCard)
             goToPaymentCreditCard.observeEvent(viewLifecycleOwner, ::onGoToPaymentCreditCard)
         }
+        activityViewModel.paymentSuccess.observeEvent(viewLifecycleOwner, ::goToReceiptCreditCard)
     }
 
     private fun setupRecyclerView() {
@@ -84,6 +90,14 @@ class ContactListFragment : BaseFragment(R.layout.fragment_contact_list) {
                     first,
                     second
                 )
+            )
+        }
+    }
+
+    private fun goToReceiptCreditCard(transaction: Transaction?) {
+        transaction?.let {
+            findNavController().navigateSafe(ContactListFragmentDirections
+                    .actionUserListFragmentToReceiptCreditCardFragment(it)
             )
         }
     }

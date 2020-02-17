@@ -115,4 +115,41 @@
     <style name="MoneyValue" parent="MoneySymbol">
         <item name="android:textSize">54sp</item>
     </style>
+
+    <!-- Receipt Credit Card -->
+    <style name="ReceiptCreditCard" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+    </style>
+
+    <style name="ReceiptCreditCardUsername" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+    </style>
+
+    <style name="ReceiptCreditCardTime" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorWhite60</item>
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="ReceiptCreditCardTransactionNumber" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/colorWhite40</item>
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="ReceiptCreditCardInfo" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+    </style>
+
+    <style name="ReceiptCreditCardTotal" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+    </style>
 </resources>

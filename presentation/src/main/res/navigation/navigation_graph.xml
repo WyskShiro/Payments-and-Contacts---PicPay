@@ -25,6 +25,9 @@
             app:exitAnim="@anim/exit_animation"
             app:popEnterAnim="@anim/pop_enter_fragment"
             app:popExitAnim="@anim/exit_animation" />
+        <action
+            android:id="@+id/action_userListFragment_to_receiptCreditCardFragment"
+            app:destination="@id/receiptCreditCardFragment" />
     </fragment>
 
     <fragment
@@ -72,6 +75,18 @@
             app:argType="will.shiro.domain.entity.User" />
         <action
             android:id="@+id/action_createCreditCardFragment_to_paymentCreditCardFragment"
-            app:destination="@id/paymentCreditCardFragment" />
+            app:destination="@id/paymentCreditCardFragment"
+            app:popUpTo="@id/userListFragment" />
     </fragment>
+
+    <dialog
+        android:id="@+id/receiptCreditCardFragment"
+        android:name="will.shiro.desafiopicpay.view.user.creditcard.receipt.ReceiptCreditCardFragment"
+        android:label="ReceiptCreditCardFragment"
+        tools:layout="@layout/fragment_receipt_credit_card">
+
+        <argument
+            android:name="transaction"
+            app:argType="will.shiro.domain.entity.Transaction" />
+    </dialog>
 </navigation>
