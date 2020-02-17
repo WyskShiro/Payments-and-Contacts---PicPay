@@ -7,10 +7,8 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import will.shiro.desafiopicpay.R
 import will.shiro.desafiopicpay.databinding.FragmentReceiptCreditCardBinding
 import will.shiro.desafiopicpay.util.base.BaseBottomSheetDialog
-import will.shiro.desafiopicpay.util.base.BaseFragment
 import will.shiro.desafiopicpay.util.base.BaseViewModel
 import will.shiro.desafiopicpay.util.di.ViewModelFactory
 import will.shiro.desafiopicpay.util.extensions.observeAction

@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import will.shiro.desafiopicpay.util.base.BaseViewModel
 import will.shiro.desafiopicpay.util.base.Event
-import will.shiro.desafiopicpay.util.di.scope.ActivityScope
 import will.shiro.desafiopicpay.util.error.Placeholder
 import will.shiro.domain.entity.Transaction
 import javax.inject.Inject

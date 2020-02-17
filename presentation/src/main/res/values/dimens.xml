@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Defaults -->
+    <dimen name="dimen_1">1dp</dimen>
     <dimen name="dimen_2">2dp</dimen>
     <dimen name="dimen_4">4dp</dimen>
     <dimen name="dimen_8">8dp</dimen>
@@ -17,4 +18,6 @@
     <!-- Specifics -->
     <dimen name="contact_list_photo">52dp</dimen>
     <dimen name="create_credit_card_input_spacing">10dp</dimen>
+    <dimen name="receipt_photo">100dp</dimen>
+    <dimen name="receipt_pull_indicator">3dp</dimen>
 </resources>

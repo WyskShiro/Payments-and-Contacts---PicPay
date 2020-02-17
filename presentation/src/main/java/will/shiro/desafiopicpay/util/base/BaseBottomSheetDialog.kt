@@ -2,13 +2,8 @@ package will.shiro.desafiopicpay.util.base
 
 import android.app.Dialog
 import android.content.Context
-import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.annotation.CallSuper
-import androidx.annotation.LayoutRes
-import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.android.AndroidInjector
@@ -40,8 +35,10 @@ abstract class BaseBottomSheetDialog : BottomSheetDialogFragment(), HasAndroidIn
 
     @CallSuper
     open fun subscribeUi() {
-        baseViewModel.toast.observeEvent(viewLifecycleOwner, ::onNextToast)
-        baseViewModel.dialog.observeEvent(viewLifecycleOwner, ::onGetDialog)
+        with(baseViewModel) {
+            toast.observeEvent(viewLifecycleOwner, ::onNextToast)
+            dialog.observeEvent(viewLifecycleOwner, ::onGetDialog)
+        }
     }
 
     open fun onGetDialog(dialogData: DialogData?) {

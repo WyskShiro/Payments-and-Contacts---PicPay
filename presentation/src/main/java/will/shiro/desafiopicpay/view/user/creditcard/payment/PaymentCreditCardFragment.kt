@@ -42,9 +42,11 @@ class PaymentCreditCardFragment : BaseFragment(R.layout.fragment_payment_credit_
 
     override fun subscribeUi() {
         super.subscribeUi()
-        viewModel.shouldEnablePay.observeAction(viewLifecycleOwner, ::onShouldEnablePay)
-        viewModel.placeholder.observeAction(viewLifecycleOwner, ::onPlaceholder)
-        viewModel.paymentSuccess.observeAction(viewLifecycleOwner, ::onPaymentSuccess)
+        with(viewModel) {
+            shouldEnablePay.observeAction(viewLifecycleOwner, ::onShouldEnablePay)
+            placeholder.observeAction(viewLifecycleOwner, ::onPlaceholder)
+            paymentSuccess.observeAction(viewLifecycleOwner, ::onPaymentSuccess)
+        }
     }
 
     private fun setupUi() {

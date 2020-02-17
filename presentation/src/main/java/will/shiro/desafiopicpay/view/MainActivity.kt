@@ -4,16 +4,12 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import setClick
 import will.shiro.desafiopicpay.R
 import will.shiro.desafiopicpay.databinding.ActivityMainBinding
 import will.shiro.desafiopicpay.util.base.BaseActivity
 import will.shiro.desafiopicpay.util.base.BaseViewModel
-import will.shiro.desafiopicpay.util.di.ViewModelFactory
-import javax.inject.Inject
 
 class MainActivity : BaseActivity() {
     override val baseViewModel: BaseViewModel get() = viewModel

@@ -29,7 +29,7 @@
 
             <View
                 android:layout_width="@dimen/dimen_40"
-                android:layout_height="3dp"
+                android:layout_height="@dimen/receipt_pull_indicator"
                 android:layout_marginTop="@dimen/dimen_8"
                 android:background="@drawable/shape_pull_indicator" />
 
@@ -54,8 +54,8 @@
 
             <ImageView
                 android:id="@+id/contact_photo_image_view"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="@dimen/receipt_photo"
+                android:layout_height="@dimen/receipt_photo"
                 android:layout_marginTop="@dimen/dimen_20"
                 app:loadCircle="@{transaction.destinationUser.img}"
                 tools:src="@mipmap/ic_launcher" />
@@ -89,7 +89,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="@dimen/dimen_1"
                 android:layout_marginTop="@dimen/dimen_24"
                 android:background="@color/colorLineDividerGray" />
 
@@ -117,7 +117,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="@dimen/dimen_1"
                 android:layout_marginTop="@dimen/dimen_12"
                 android:background="@color/colorLineDividerGray" />
 
