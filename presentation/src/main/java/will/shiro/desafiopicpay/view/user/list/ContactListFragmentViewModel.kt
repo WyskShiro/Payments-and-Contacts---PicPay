@@ -49,6 +49,10 @@ class ContactListFragmentViewModel @Inject constructor(
             }
     }
 
+    fun refresh() {
+        getUsers()
+    }
+
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     private fun onCreate() {
         getUsers()

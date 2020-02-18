@@ -91,5 +91,8 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
 
     // Constraint layout
-    implementation "androidx.constraintlayout:constraintlayout:2.0.0-beta4"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+
+    // Swipe Refresh
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swipeRefreshLayoutVersion"
 }

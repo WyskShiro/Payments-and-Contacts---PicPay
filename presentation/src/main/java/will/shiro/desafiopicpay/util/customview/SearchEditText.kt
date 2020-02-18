@@ -28,6 +28,10 @@ class SearchEditText @JvmOverloads constructor(
         binding.searchEditText.observeChanges(callback)
     }
 
+    fun clear() {
+        binding.searchEditText.setText("")
+    }
+
     private fun setupTextWatcher() {
         binding.searchEditText.doOnTextChanged { text, _, _, _ ->
             text?.run {
