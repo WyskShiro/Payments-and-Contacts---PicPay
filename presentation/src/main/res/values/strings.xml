@@ -28,6 +28,7 @@
     <!-- Payment Credit Card Fragment -->
     <string name="payment_credit_card_mask">R$</string>
     <string name="payment_credit_card_number">%s %s •</string>
+    <string name="payment_credit_card_transaction_rejected">Seu pagamento não pode ser realizado. Verifique se foi cadastrado um cartão de crédito válido.</string>
 
     <!-- Create Credit Card Fragment -->
     <string name="create_credit_card">Cadastrar cartão</string>

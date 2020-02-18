@@ -1,6 +1,6 @@
 package will.shiro.desafiopicpay.util.error
 
-import will.shiro.desafiopicpay.util.resources.AndroidStrings
+import will.shiro.domain.util.Strings
 
 class DialogData(
     val title: String?,
@@ -68,7 +68,7 @@ class DialogData(
         }
 
         fun error(
-            strings: AndroidStrings,
+            strings: Strings,
             message: String,
             confirmButtonText: String? = null,
             onConfirm: (() -> Unit)? = null,

@@ -1,10 +1,10 @@
 package will.shiro.desafiopicpay.util.error
 
-import will.shiro.desafiopicpay.util.resources.AndroidStrings
+import will.shiro.domain.util.Strings
 import javax.inject.Inject
 
 class ErrorHandler @Inject constructor(
-    private val strings: AndroidStrings
+    private val strings: Strings
 ) {
 
     fun getDialogData(
