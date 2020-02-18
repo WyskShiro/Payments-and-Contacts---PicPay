@@ -12,17 +12,6 @@ open class RequestHandler {
             .compose(unwrap())
     }
 
-    protected fun <T> makeCompletableRequest(request: Single<Response<T>>): Completable {
-        return request
-            .compose(verifyRequestException())
-            .ignoreElement()
-    }
-
-    protected fun <T> justVerifyErrors(request: Single<Response<T>>): Completable {
-        return request.compose(verifyResponseException())
-            .ignoreElement()
-    }
-
     private fun <T> unwrap(): SingleTransformer<Response<T>, T> {
         return SingleTransformer { upstream ->
             upstream.map(Response<T>::body)

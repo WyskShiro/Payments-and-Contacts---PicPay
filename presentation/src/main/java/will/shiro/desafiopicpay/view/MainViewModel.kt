@@ -19,8 +19,4 @@ class MainViewModel @Inject constructor() : BaseViewModel() {
             _paymentSuccess.postValue(Event(it))
         }
     }
-
-    fun onPlaceholder(placeholder: Placeholder?) {
-        placeholder?.run(::setPlaceholder)
-    }
 }

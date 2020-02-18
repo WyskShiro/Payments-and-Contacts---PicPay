@@ -8,6 +8,6 @@ class SpecificSizeValidation(
     override var field: String? = null
 
     override fun isValid(): Boolean {
-        return field?.run { length > -minFieldSize } ?: false
+        return field?.run { length == minFieldSize } ?: false
     }
 }

@@ -44,6 +44,15 @@ class CreateCreditCardFragment : BaseFragment(R.layout.fragment_create_credit_ca
         setupUi()
     }
 
+    override fun subscribeUi() {
+        super.subscribeUi()
+        with(viewModel) {
+            shouldEnableSave.observeAction(viewLifecycleOwner, ::onShouldEnableSave)
+            goToPaymentCreditCard.observeAction(viewLifecycleOwner, ::onGoToPaymentCreditCard)
+            fillWithCreditCard.observeAction(viewLifecycleOwner, ::onFillWithCreditCard)
+        }
+    }
+
     private fun setupUi() {
         with(binding) {
             numberInput.textInputEditText.observeChanges {
@@ -62,15 +71,6 @@ class CreateCreditCardFragment : BaseFragment(R.layout.fragment_create_credit_ca
             }
             CVVEditConfigurations.apply(cvvInput.textInputEditText)
             createButton.setClick(viewModel::saveCreditCard)
-        }
-    }
-
-    override fun subscribeUi() {
-        super.subscribeUi()
-        with(viewModel) {
-            shouldEnableSave.observeAction(viewLifecycleOwner, ::onShouldEnableSave)
-            goToPaymentCreditCard.observeAction(viewLifecycleOwner, ::onGoToPaymentCreditCard)
-            fillWithCreditCard.observeAction(viewLifecycleOwner, ::onFillWithCreditCard)
         }
     }
 
@@ -109,7 +109,9 @@ class CreateCreditCardFragment : BaseFragment(R.layout.fragment_create_credit_ca
     }
 
     private fun shouldScrollToBottom(): Boolean {
-        return binding.expirationDateInput.textInputEditText.hasFocus() ||
-                binding.cvvInput.textInputEditText.hasFocus()
+        return with(binding) {
+            expirationDateInput.textInputEditText.hasFocus() ||
+                    cvvInput.textInputEditText.hasFocus()
+        }
     }
 }

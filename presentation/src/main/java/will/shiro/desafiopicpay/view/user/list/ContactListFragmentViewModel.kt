@@ -33,6 +33,10 @@ class ContactListFragmentViewModel @Inject constructor(
     private val _goToPrimingCreditCard by lazy { MutableLiveData<Event<User>>() }
     private val _goToPaymentCreditCard by lazy { MutableLiveData<Event<Pair<User, CreditCard>>>() }
 
+    init {
+        getUsers()
+    }
+
     fun onSearchText(text: String) {
         _contacts.value?.run {
             _searchedContacts.value =
@@ -50,11 +54,6 @@ class ContactListFragmentViewModel @Inject constructor(
     }
 
     fun refresh() {
-        getUsers()
-    }
-
-    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-    private fun onCreate() {
         getUsers()
     }
 

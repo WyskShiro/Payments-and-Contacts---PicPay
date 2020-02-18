@@ -7,6 +7,7 @@ import javax.inject.Inject
 
 class TransactionRequestToTransactionMapper @Inject constructor() :
     Mapper<TransactionRequest, ApiTransactionRequest>() {
+
     override fun transform(t: TransactionRequest): ApiTransactionRequest {
         return ApiTransactionRequest(
             cardNumber = t.cardNumber,
