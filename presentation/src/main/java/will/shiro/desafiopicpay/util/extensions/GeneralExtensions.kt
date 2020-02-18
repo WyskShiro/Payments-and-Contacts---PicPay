@@ -2,30 +2,12 @@ package will.shiro.desafiopicpay.util.extensions
 
 import android.app.Activity
 import android.content.Context
-import android.text.Editable
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.NavDirections
-import will.shiro.desafiopicpay.util.watcher.SimpleTextWatcher
-
-// EditText
-fun EditText.createTextWatcher(afterTextChanged: (String?) -> Unit): SimpleTextWatcher {
-    val textWatcher = object : SimpleTextWatcher() {
-        override fun afterTextChanged(s: Editable) {
-            afterTextChanged(s.toString())
-        }
-    }
-    addTextChangedListener(textWatcher)
-    return textWatcher
-}
-
-fun consume(f: () -> Unit): Boolean {
-    f()
-    return true
-}
 
 fun NavController.navigateSafe(directions: NavDirections) {
     val resId = directions.actionId

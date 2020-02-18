@@ -1,6 +1,7 @@
 package will.shiro.domain.util.form
 
 import will.shiro.domain.entity.CreditCard
+import will.shiro.domain.util.extension.MM_YY
 import will.shiro.domain.util.extension.toDate
 import will.shiro.domain.util.form.validation.EmptyStringValidation
 import will.shiro.domain.util.form.validation.SpecificSizeValidation
@@ -29,7 +30,7 @@ class CreditCardFormFields @Inject constructor() {
         return CreditCard(
             number = fields[NUMBER]?.field!!,
             ownerName = fields[OWNER_NAME]?.field!!,
-            expirationDate = fields[EXPIRATION_DATE]?.field?.toDate("MM/yy")!!,
+            expirationDate = fields[EXPIRATION_DATE]?.field?.toDate(MM_YY)!!,
             cvv = fields[CVV]?.field?.toInt()!!
         )
     }

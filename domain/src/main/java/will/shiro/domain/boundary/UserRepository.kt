@@ -8,6 +8,5 @@ import will.shiro.domain.entity.User
 interface UserRepository {
 
     fun getUsers(): Single<List<User>>
-
     fun createPayment(transactionRequest: TransactionRequest): Single<Transaction>
 }

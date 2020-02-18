@@ -43,6 +43,7 @@ class ContactListFragment : BaseFragment(R.layout.fragment_contact_list) {
         lifecycle.addObserver(viewModel)
         binding = FragmentContactListBinding.bind(view)
         setupRecyclerView()
+        setupRefreshRecycler()
         setupUi()
     }
 
@@ -63,6 +64,16 @@ class ContactListFragment : BaseFragment(R.layout.fragment_contact_list) {
             if (adapter == null) {
                 adapter = contactAdapter
                 layoutManager = LinearLayoutManager(context)
+            }
+        }
+    }
+
+    private fun setupRefreshRecycler() {
+        with(binding) {
+            contactListSwipeRefresh.setOnRefreshListener {
+                contactListSwipeRefresh.isRefreshing = false
+                searchContactsView.clear()
+                viewModel.refresh()
             }
         }
     }

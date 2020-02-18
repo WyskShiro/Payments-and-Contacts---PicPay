@@ -12,7 +12,8 @@ class CreateTransaction @Inject constructor(
 ) {
 
     fun execute(transactionRequest: TransactionRequest): Single<Transaction> {
-        return userRepository.createPayment(transactionRequest).flatMap(::handleTransactionSuccess)
+        return userRepository.createPayment(transactionRequest)
+            .flatMap(::handleTransactionSuccess)
     }
 
     private fun handleTransactionSuccess(transaction: Transaction): Single<Transaction> {

@@ -12,8 +12,6 @@ sealed class Placeholder(
     class Loading(message: String? = null) :
         Placeholder(message != null, message, false, null, true, null)
 
-    class Message(message: String) : Placeholder(true, message, false, null, false, null)
-
     class Action(message: String?, buttonText: String, action: (() -> Unit)?) :
         Placeholder(true, message, true, buttonText, false, action)
 
@@ -21,9 +19,5 @@ sealed class Placeholder(
 
     fun visible(): Boolean {
         return messageVisible || buttonVisible || progressVisible
-    }
-
-    fun onActionButtonClicked() {
-        buttonAction?.invoke()
     }
 }

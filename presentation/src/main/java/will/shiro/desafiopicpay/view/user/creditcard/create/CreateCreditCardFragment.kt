@@ -20,6 +20,8 @@ import will.shiro.desafiopicpay.util.mask.CVVEditConfigurations
 import will.shiro.desafiopicpay.util.mask.CreditCardEditConfigurations
 import will.shiro.desafiopicpay.util.mask.DateMonthYearEditConfigurations
 import will.shiro.domain.entity.CreditCard
+import will.shiro.domain.util.extension.MM_YY
+import will.shiro.domain.util.extension.format
 import will.shiro.domain.util.form.CreditCardFormFields
 import javax.inject.Inject
 
@@ -33,13 +35,22 @@ class CreateCreditCardFragment : BaseFragment(R.layout.fragment_create_credit_ca
     }
 
     private lateinit var binding: FragmentCreateCreditCardBinding
-    private val args: CreateCreditCardFragmentArgs by navArgs()
+    val args: CreateCreditCardFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         binding = FragmentCreateCreditCardBinding.bind(view)
         setupUi()
+    }
+
+    override fun subscribeUi() {
+        super.subscribeUi()
+        with(viewModel) {
+            shouldEnableSave.observeAction(viewLifecycleOwner, ::onShouldEnableSave)
+            goToPaymentCreditCard.observeAction(viewLifecycleOwner, ::onGoToPaymentCreditCard)
+            fillWithCreditCard.observeAction(viewLifecycleOwner, ::onFillWithCreditCard)
+        }
     }
 
     private fun setupUi() {
@@ -63,14 +74,6 @@ class CreateCreditCardFragment : BaseFragment(R.layout.fragment_create_credit_ca
         }
     }
 
-    override fun subscribeUi() {
-        super.subscribeUi()
-        with(viewModel) {
-            shouldEnableSave.observeAction(viewLifecycleOwner, ::onShouldEnableSave)
-            goToPaymentCreditCard.observeAction(viewLifecycleOwner, ::onGoToPaymentCreditCard)
-        }
-    }
-
     private fun onShouldEnableSave(shouldEnableSave: Boolean?) {
         shouldEnableSave?.let { _shouldEnableSave ->
             with(binding) {
@@ -84,17 +87,31 @@ class CreateCreditCardFragment : BaseFragment(R.layout.fragment_create_credit_ca
 
     private fun onGoToPaymentCreditCard(creditCard: CreditCard?) {
         creditCard?.let {
-            findNavController().navigateSafe(CreateCreditCardFragmentDirections
-                .actionCreateCreditCardFragmentToPaymentCreditCardFragment(
-                    args.user,
-                    it
-                )
+            findNavController().navigateSafe(
+                CreateCreditCardFragmentDirections
+                    .actionCreateCreditCardFragmentToPaymentCreditCardFragment(
+                        args.user,
+                        it
+                    )
             )
         }
     }
 
+    private fun onFillWithCreditCard(creditCard: CreditCard?) {
+        creditCard?.let {
+            with(binding) {
+                numberInput.textInputEditText.setText(it.number)
+                ownerNameInput.textInputEditText.setText(it.ownerName)
+                expirationDateInput.textInputEditText.setText(it.expirationDate.format(MM_YY))
+                cvvInput.textInputEditText.setText(it.cvv.toString())
+            }
+        }
+    }
+
     private fun shouldScrollToBottom(): Boolean {
-        return binding.expirationDateInput.textInputEditText.hasFocus() ||
-                binding.cvvInput.textInputEditText.hasFocus()
+        return with(binding) {
+            expirationDateInput.textInputEditText.hasFocus() ||
+                    cvvInput.textInputEditText.hasFocus()
+        }
     }
 }

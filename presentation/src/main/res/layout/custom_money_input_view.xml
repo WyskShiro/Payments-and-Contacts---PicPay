@@ -22,8 +22,6 @@
             android:maxLength="10"
             android:backgroundTint="@android:color/transparent"
             android:inputType="number"
-            android:text="0,00">
-            <requestFocus />
-        </EditText>
+            android:text="0,00" />
     </LinearLayout>
 </layout>

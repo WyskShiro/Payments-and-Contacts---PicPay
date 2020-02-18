@@ -11,8 +11,8 @@ import javax.inject.Inject
 
 class ApiTransactionResponseToTransactionMapper @Inject constructor(
     private val apiUserMapper: Mapper<ApiUser, User>
-) :
-    Mapper<ApiTransactionResponse, Transaction>() {
+) : Mapper<ApiTransactionResponse, Transaction>() {
+
     override fun transform(t: ApiTransactionResponse): Transaction {
         return Transaction(
             id = t.transaction.id,

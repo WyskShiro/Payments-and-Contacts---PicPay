@@ -11,18 +11,28 @@ import will.shiro.domain.entity.CreditCard
 import will.shiro.domain.interactor.creditcard.SaveCreditCard
 import will.shiro.domain.util.form.CreditCardFormFields
 import javax.inject.Inject
+import javax.inject.Named
 
 class CreateCreditCardViewModel @Inject constructor(
     private val creditCardFormFields: CreditCardFormFields,
     private val saveCreditCard: SaveCreditCard,
-    private val schedulerProvider: SchedulerProvider
+    private val schedulerProvider: SchedulerProvider,
+    @Named(CreateCreditCardProvider.NAMED_CREDIT_CARD) creditCard: CreditCard?
 ) : BaseViewModel() {
 
     val shouldEnableSave: LiveData<Boolean> get() = _shouldEnableSave
     val goToPaymentCreditCard: LiveData<CreditCard> get() = _goToPaymentCreditCard
+    val fillWithCreditCard: LiveData<CreditCard> get() = _fillWithCreditCard
 
-    private val _shouldEnableSave = MutableLiveData<Boolean>()
-    private val _goToPaymentCreditCard = MutableLiveData<CreditCard>()
+    private val _shouldEnableSave by lazy { MutableLiveData<Boolean>() }
+    private val _goToPaymentCreditCard by lazy { MutableLiveData<CreditCard>() }
+    private val _fillWithCreditCard by lazy { MutableLiveData<CreditCard>() }
+
+    init {
+        creditCard?.let {
+            _fillWithCreditCard.value = it
+        }
+    }
 
     fun onInputTextChanged(text: String, identifier: String) {
         creditCardFormFields.fields[identifier]?.field = text

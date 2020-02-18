@@ -5,6 +5,7 @@ import dagger.android.ContributesAndroidInjector
 import will.shiro.desafiopicpay.util.base.BaseFragment
 import will.shiro.desafiopicpay.util.di.scope.FragmentScope
 import will.shiro.desafiopicpay.view.user.creditcard.create.CreateCreditCardFragment
+import will.shiro.desafiopicpay.view.user.creditcard.create.CreateCreditCardProvider
 import will.shiro.desafiopicpay.view.user.creditcard.create.PrimingCreditCardFragment
 import will.shiro.desafiopicpay.view.user.creditcard.payment.PaymentCreditCardFragment
 import will.shiro.desafiopicpay.view.user.creditcard.payment.PaymentCreditCardProvider
@@ -31,7 +32,7 @@ abstract class FragmentBindingModule {
     abstract fun contributesPaymentCreditCardFragment(): PaymentCreditCardFragment
 
     @FragmentScope
-    @ContributesAndroidInjector
+    @ContributesAndroidInjector(modules = [CreateCreditCardProvider::class])
     abstract fun contributesCreateCreditCardFragment(): CreateCreditCardFragment
 
     @FragmentScope

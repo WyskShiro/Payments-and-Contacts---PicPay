@@ -1,6 +1,5 @@
 package will.shiro.data.util.request
 
-import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.SingleTransformer
 import retrofit2.Response
@@ -10,17 +9,6 @@ open class RequestHandler {
         return request.compose(verifyResponseException())
             .compose(verifyRequestException())
             .compose(unwrap())
-    }
-
-    protected fun <T> makeCompletableRequest(request: Single<Response<T>>): Completable {
-        return request
-            .compose(verifyRequestException())
-            .ignoreElement()
-    }
-
-    protected fun <T> justVerifyErrors(request: Single<Response<T>>): Completable {
-        return request.compose(verifyResponseException())
-            .ignoreElement()
     }
 
     private fun <T> unwrap(): SingleTransformer<Response<T>, T> {
