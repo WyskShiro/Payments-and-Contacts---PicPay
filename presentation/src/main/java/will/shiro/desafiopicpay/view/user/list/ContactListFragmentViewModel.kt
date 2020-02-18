@@ -1,11 +1,8 @@
 package will.shiro.desafiopicpay.view.user.list
 
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.OnLifecycleEvent
 import io.reactivex.rxkotlin.subscribeBy
-import will.shiro.domain.util.throwable.NoItemFoundLocalThrowable
 import will.shiro.desafiopicpay.util.base.BaseViewModel
 import will.shiro.desafiopicpay.util.base.Event
 import will.shiro.desafiopicpay.util.extensions.defaultPlaceholders
@@ -15,6 +12,7 @@ import will.shiro.domain.entity.CreditCard
 import will.shiro.domain.entity.User
 import will.shiro.domain.interactor.creditcard.GetCreditCard
 import will.shiro.domain.interactor.user.GetUsers
+import will.shiro.domain.util.throwable.NoItemFoundLocalThrowable
 import javax.inject.Inject
 
 class ContactListFragmentViewModel @Inject constructor(

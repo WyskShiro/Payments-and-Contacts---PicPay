@@ -1,6 +1,5 @@
 package will.shiro.data.util.request
 
-import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.SingleTransformer
 import retrofit2.Response
