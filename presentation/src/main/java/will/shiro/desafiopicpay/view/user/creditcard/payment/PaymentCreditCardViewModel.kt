@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.rxkotlin.subscribeBy
 import will.shiro.desafiopicpay.util.base.BaseViewModel
+import will.shiro.desafiopicpay.util.error.DialogData
 import will.shiro.desafiopicpay.util.extensions.convertCentToBasicUnit
 import will.shiro.desafiopicpay.util.extensions.defaultPlaceholders
 import will.shiro.desafiopicpay.util.extensions.defaultSched
@@ -15,8 +16,11 @@ import will.shiro.domain.entity.Transaction
 import will.shiro.domain.entity.TransactionRequest
 import will.shiro.domain.entity.User
 import will.shiro.domain.interactor.user.CreateTransaction
+import will.shiro.domain.util.Strings
+import will.shiro.domain.util.extension.MM_YY
 import will.shiro.domain.util.extension.format
 import will.shiro.domain.util.extension.onlyNumbers
+import will.shiro.domain.util.throwable.TransactionRejectedThrowable
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -24,7 +28,8 @@ class PaymentCreditCardViewModel @Inject constructor(
     @Named(NAMED_USER) private val user: User,
     @Named(NAMED_CREDIT_CARD) private val creditCard: CreditCard,
     private val createTransaction: CreateTransaction,
-    private val schedulerProvider: SchedulerProvider
+    private val schedulerProvider: SchedulerProvider,
+    private val strings: Strings
 ) : BaseViewModel() {
 
     val shouldEnablePay: LiveData<Boolean> get() = _shouldEnablePay
@@ -47,19 +52,26 @@ class PaymentCreditCardViewModel @Inject constructor(
     fun onPay() {
         createTransaction.execute(
             TransactionRequest(
-                cardNumber = creditCard.number,
+                cardNumber = creditCard.number.replace(" ", ""),
                 cvv = creditCard.cvv,
                 value = value,
-                expiryDate = creditCard.expirationDate.format("MM/yy"),
+                expiryDate = creditCard.expirationDate.format(MM_YY),
                 destinationUserId = user.id
             )
         )
             .defaultSched(schedulerProvider)
             .defaultPlaceholders(::setPlaceholder)
-            .subscribeBy({ setDialog(it, ::onPay) }) {
+            .subscribeBy(::onPayFailure) {
                 _paymentSuccess.postValue(it)
-                // TODO tratar erro
-                // TODO finish + mostrar recibo
             }
+    }
+
+    private fun onPayFailure(throwable: Throwable) {
+        when (throwable) {
+            is TransactionRejectedThrowable -> {
+                setDialog(DialogData.error(strings, strings.paymentCreditCardTransactionRejected))
+            }
+            else -> setDialog(throwable, ::onPay)
+        }
     }
 }

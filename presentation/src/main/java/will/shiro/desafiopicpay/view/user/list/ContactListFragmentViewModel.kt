@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.OnLifecycleEvent
 import io.reactivex.rxkotlin.subscribeBy
-import will.shiro.data.util.throwable.NoItemFoundLocalThrowable
+import will.shiro.domain.util.throwable.NoItemFoundLocalThrowable
 import will.shiro.desafiopicpay.util.base.BaseViewModel
 import will.shiro.desafiopicpay.util.base.Event
 import will.shiro.desafiopicpay.util.extensions.defaultPlaceholders

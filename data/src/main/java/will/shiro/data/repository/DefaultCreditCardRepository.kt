@@ -5,7 +5,7 @@ import io.realm.Realm
 import io.realm.kotlin.where
 import will.shiro.data.local.entity.RealmCreditCard
 import will.shiro.data.util.mapper.Mapper
-import will.shiro.data.util.throwable.NoItemFoundLocalThrowable
+import will.shiro.domain.util.throwable.NoItemFoundLocalThrowable
 import will.shiro.domain.boundary.CreditCardRepository
 import will.shiro.domain.entity.CreditCard
 import javax.inject.Inject

@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat
 import will.shiro.desafiopicpay.R
 import will.shiro.desafiopicpay.util.watcher.SimpleTextWatcher
 import will.shiro.domain.util.extension.onlyNumbers
+import java.lang.IndexOutOfBoundsException
 
 class MoneyMask(
     private val editText: EditText,
@@ -19,25 +20,37 @@ class MoneyMask(
             isUpdating = false
         } else {
             var newText = s.toString().onlyNumbers()
-            if (newText.length < 3) {
-                newText = "0" + newText.substring(0 until 2)
-                newText = insertSymbol(newText, 1)
-            } else {
-                if (newText.startsWith("0")) {
-                    newText = newText.removeRange(0, 1)
+            when {
+                newText.isEmpty() -> {
+                    newText = DEFAULT_NO_MONEY
                 }
-                var symbolPosition = newText.length - DECIMAL_SEPARATOR_SIZE
-                newText = insertSymbol(newText, symbolPosition)
-                symbolPosition -= GROUP_SEPARATOR_SIZE
-                while (symbolPosition > 0) {
-                    newText = insertSymbol(newText, symbolPosition, GROUP_SEPARATOR)
+                newText.length == 1 -> {
+                    newText = "0,0$newText"
+                }
+                newText.length < 3 -> {
+                    newText = "0,$newText"
+                }
+                else -> {
+                    if (newText.startsWith("0")) {
+                        newText = newText.removeRange(0, 1)
+                    }
+                    var symbolPosition = newText.length - DECIMAL_SEPARATOR_SIZE
+                    newText = insertSymbol(newText, symbolPosition)
                     symbolPosition -= GROUP_SEPARATOR_SIZE
+                    while (symbolPosition > 0) {
+                        newText = insertSymbol(newText, symbolPosition, GROUP_SEPARATOR)
+                        symbolPosition -= GROUP_SEPARATOR_SIZE
+                    }
                 }
             }
             isUpdating = true
             editText.setText(newText)
             oldText = newText
-            editText.setSelection(newText.length)
+            try {
+                editText.setSelection(newText.length)
+            } catch (e: IndexOutOfBoundsException) {
+                editText.setSelection(editText.length())
+            }
             changeInputColor(newText)
         }
     }
