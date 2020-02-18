@@ -14,6 +14,7 @@ import will.shiro.desafiopicpay.util.base.BaseFragment
 import will.shiro.desafiopicpay.util.base.BaseViewModel
 import will.shiro.desafiopicpay.util.di.ViewModelFactory
 import will.shiro.desafiopicpay.util.error.Placeholder
+import will.shiro.desafiopicpay.util.extensions.navigateSafe
 import will.shiro.desafiopicpay.util.extensions.observeAction
 import will.shiro.desafiopicpay.util.extensions.openKeyboard
 import will.shiro.desafiopicpay.view.MainViewModel
@@ -52,10 +53,12 @@ class PaymentCreditCardFragment : BaseFragment(R.layout.fragment_payment_credit_
     private fun setupUi() {
         with(binding) {
             moneyInputLayout.editText.observeChanges(viewModel::onMoneyValueChanged)
+            editTextView.setClick(::onEditClicked)
             user = args.user
             creditCard = args.creditCard
             createButton.setClick(viewModel::onPay)
-            openKeyboard(moneyInputLayout.editText)
+            binding.moneyInputLayout.editText.requestFocus()
+            openKeyboard(binding.moneyInputLayout.editText)
         }
     }
 
@@ -76,5 +79,13 @@ class PaymentCreditCardFragment : BaseFragment(R.layout.fragment_payment_credit_
             activityViewModel.onPaymentSuccess(it)
             findNavController().popBackStack()
         }
+    }
+
+    private fun onEditClicked() {
+        findNavController().navigateSafe(
+            PaymentCreditCardFragmentDirections
+                .actionPaymentCreditCardFragmentToCreateCreditCardFragment(args.user)
+                .setCreditCard(args.creditCard)
+        )
     }
 }

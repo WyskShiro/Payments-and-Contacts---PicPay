@@ -20,6 +20,8 @@ import will.shiro.desafiopicpay.util.mask.CVVEditConfigurations
 import will.shiro.desafiopicpay.util.mask.CreditCardEditConfigurations
 import will.shiro.desafiopicpay.util.mask.DateMonthYearEditConfigurations
 import will.shiro.domain.entity.CreditCard
+import will.shiro.domain.util.extension.MM_YY
+import will.shiro.domain.util.extension.format
 import will.shiro.domain.util.form.CreditCardFormFields
 import javax.inject.Inject
 
@@ -33,7 +35,7 @@ class CreateCreditCardFragment : BaseFragment(R.layout.fragment_create_credit_ca
     }
 
     private lateinit var binding: FragmentCreateCreditCardBinding
-    private val args: CreateCreditCardFragmentArgs by navArgs()
+    val args: CreateCreditCardFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -68,6 +70,7 @@ class CreateCreditCardFragment : BaseFragment(R.layout.fragment_create_credit_ca
         with(viewModel) {
             shouldEnableSave.observeAction(viewLifecycleOwner, ::onShouldEnableSave)
             goToPaymentCreditCard.observeAction(viewLifecycleOwner, ::onGoToPaymentCreditCard)
+            fillWithCreditCard.observeAction(viewLifecycleOwner, ::onFillWithCreditCard)
         }
     }
 
@@ -84,12 +87,24 @@ class CreateCreditCardFragment : BaseFragment(R.layout.fragment_create_credit_ca
 
     private fun onGoToPaymentCreditCard(creditCard: CreditCard?) {
         creditCard?.let {
-            findNavController().navigateSafe(CreateCreditCardFragmentDirections
-                .actionCreateCreditCardFragmentToPaymentCreditCardFragment(
-                    args.user,
-                    it
-                )
+            findNavController().navigateSafe(
+                CreateCreditCardFragmentDirections
+                    .actionCreateCreditCardFragmentToPaymentCreditCardFragment(
+                        args.user,
+                        it
+                    )
             )
+        }
+    }
+
+    private fun onFillWithCreditCard(creditCard: CreditCard?) {
+        creditCard?.let {
+            with(binding) {
+                numberInput.textInputEditText.setText(it.number)
+                ownerNameInput.textInputEditText.setText(it.ownerName)
+                expirationDateInput.textInputEditText.setText(it.expirationDate.format(MM_YY))
+                cvvInput.textInputEditText.setText(it.cvv.toString())
+            }
         }
     }
 

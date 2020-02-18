@@ -41,8 +41,11 @@ class MoneyMask(
             newText.length == 1 -> {
                 newText = "0,0$newText"
             }
-            newText.length < 3 -> {
+            newText.length == 2 -> {
                 newText = "0,$newText"
+            }
+            newText.length == 3 -> {
+                newText = insertSymbol(newText, 1)
             }
             else -> {
                 if (newText.startsWith("0")) {

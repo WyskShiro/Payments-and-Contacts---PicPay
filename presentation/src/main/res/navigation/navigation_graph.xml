@@ -62,6 +62,14 @@
         <argument
             android:name="creditCard"
             app:argType="will.shiro.domain.entity.CreditCard" />
+
+        <action
+            android:id="@+id/action_paymentCreditCardFragment_to_createCreditCardFragment"
+            app:destination="@id/createCreditCardFragment"
+            app:enterAnim="@anim/enter_fragment"
+            app:exitAnim="@anim/exit_animation"
+            app:popEnterAnim="@anim/pop_enter_fragment"
+            app:popExitAnim="@anim/exit_animation" />
     </fragment>
 
     <fragment
@@ -77,6 +85,11 @@
             android:id="@+id/action_createCreditCardFragment_to_paymentCreditCardFragment"
             app:destination="@id/paymentCreditCardFragment"
             app:popUpTo="@id/userListFragment" />
+        <argument
+            android:name="creditCard"
+            android:defaultValue="@null"
+            app:argType="will.shiro.domain.entity.CreditCard"
+            app:nullable="true" />
     </fragment>
 
     <dialog
