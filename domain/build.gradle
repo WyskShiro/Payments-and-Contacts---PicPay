@@ -19,11 +19,11 @@ dependencies {
     api "com.google.dagger:dagger:$daggerVersion"
 
     // tests
-    testApi "org.junit.jupiter:junit-jupiter-api:5.5.2"
-    testApi "org.junit.jupiter:junit-jupiter-engine:5.5.2"
-    testApi "org.junit.platform:junit-platform-runner:1.0.0-M4"
-    testApi 'org.mockito:mockito-core:3.2.4'
-    testApi 'org.assertj:assertj-core:3.13.2'
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+    testImplementation "androidx.arch.core:core-testing:$androidCoreTestingVersion"
+    testImplementation "io.mockk:mockk:$mockkVersion"
+    testImplementation "org.junit.platform:junit-platform-runner:$junitRunnerVersion"
 }
 
 compileKotlin {

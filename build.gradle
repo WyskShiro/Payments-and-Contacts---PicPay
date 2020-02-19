@@ -39,6 +39,12 @@ buildscript {
         supportVersion = '28.0.0'
         swipeRefreshLayoutVersion = '1.0.0'
         viewModelVersion = '2.2.0'
+
+        // testing
+        androidCoreTestingVersion = "2.1.0"
+        junitVersion = "5.5.2"
+        mockkVersion = "1.9.3"
+        junitRunnerVersion = "1.0.0-M4"
     }
 
     repositories {

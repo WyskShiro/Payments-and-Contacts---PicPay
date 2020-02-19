@@ -17,6 +17,7 @@ jobs:
       - name: Build with Gradle
         run: 
           ./gradlew ktlintCheck
+          ./gradlew tests
       - uses: MeilCli/danger-action@v2
         with:
           plugins_file: 'Gemfile'

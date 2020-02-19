@@ -50,6 +50,10 @@ dependencies {
 
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
 
-    api "androidx.security:security-crypto:1.0.0-alpha02"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+    testImplementation "androidx.arch.core:core-testing:$androidCoreTestingVersion"
+    testImplementation "io.mockk:mockk:$mockkVersion"
+    testImplementation "org.junit.platform:junit-platform-runner:$junitRunnerVersion"
 }
 
