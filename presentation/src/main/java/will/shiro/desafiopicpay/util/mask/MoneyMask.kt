@@ -7,7 +7,6 @@ import will.shiro.desafiopicpay.R
 import will.shiro.desafiopicpay.util.watcher.SimpleTextWatcher
 import will.shiro.domain.util.extension.DEFAULT_NO_MONEY
 import will.shiro.domain.util.extension.formatAsMoney
-import will.shiro.domain.util.extension.onlyNumbers
 
 class MoneyMask(
     private val editText: EditText,

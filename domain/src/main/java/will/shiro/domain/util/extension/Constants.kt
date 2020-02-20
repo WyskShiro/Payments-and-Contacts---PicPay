@@ -15,4 +15,3 @@ const val GROUP_SEPARATOR = "."
 const val GROUP_SEPARATOR_SIZE = 3
 const val DECIMAL_SEPARATOR = ","
 const val DECIMAL_SEPARATOR_SIZE = 2
-
