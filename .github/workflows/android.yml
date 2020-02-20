@@ -19,7 +19,7 @@ jobs:
           ./gradlew ktlintCheck
       - name: Tests
         run:
-          ./gradlew tests
+          ./gradlew test
       - uses: MeilCli/danger-action@v2
         with:
           plugins_file: 'Gemfile'

@@ -5,8 +5,9 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import will.shiro.desafiopicpay.R
 import will.shiro.desafiopicpay.util.watcher.SimpleTextWatcher
+import will.shiro.domain.util.extension.DEFAULT_NO_MONEY
+import will.shiro.domain.util.extension.formatAsMoney
 import will.shiro.domain.util.extension.onlyNumbers
-import java.lang.IndexOutOfBoundsException
 
 class MoneyMask(
     private val editText: EditText,
@@ -19,7 +20,7 @@ class MoneyMask(
         if (isUpdating) {
             isUpdating = false
         } else {
-            val newText = formatAsMoney(s.toString().onlyNumbers())
+            val newText = s.toString().formatAsMoney()
             isUpdating = true
             editText.setText(newText)
             oldText = newText
@@ -32,46 +33,6 @@ class MoneyMask(
         }
     }
 
-    private fun formatAsMoney(text: String): String {
-        var newText = text
-        when {
-            newText.isEmpty() -> {
-                newText = DEFAULT_NO_MONEY
-            }
-            newText.length == 1 -> {
-                newText = "0,0$newText"
-            }
-            newText.length == 2 -> {
-                newText = "0,$newText"
-            }
-            newText.length == 3 -> {
-                newText = insertSymbol(newText, 1)
-            }
-            else -> {
-                if (newText.startsWith("0")) {
-                    newText = newText.removeRange(0, 1)
-                }
-                var symbolPosition = newText.length - DECIMAL_SEPARATOR_SIZE
-                newText = insertSymbol(newText, symbolPosition)
-                symbolPosition -= GROUP_SEPARATOR_SIZE
-                while (symbolPosition > 0) {
-                    newText = insertSymbol(newText, symbolPosition, GROUP_SEPARATOR)
-                    symbolPosition -= GROUP_SEPARATOR_SIZE
-                }
-            }
-        }
-        return newText
-    }
-
-    private fun insertSymbol(
-        text: String,
-        position: Int,
-        symbol: String = DECIMAL_SEPARATOR
-    ): String {
-        return text.substring(0 until position) +
-                symbol + text.substring(position until text.length)
-    }
-
     private fun changeInputColor(text: String) {
         val resourceColor = if (text == DEFAULT_NO_MONEY) {
             R.color.colorWhite40
@@ -80,13 +41,5 @@ class MoneyMask(
         }
         editText.setTextColor(ContextCompat.getColor(editText.context, resourceColor))
         textView.setTextColor(ContextCompat.getColor(textView.context, resourceColor))
-    }
-
-    companion object {
-        private const val DEFAULT_NO_MONEY = "0,00"
-        private const val GROUP_SEPARATOR = "."
-        private const val GROUP_SEPARATOR_SIZE = 3
-        private const val DECIMAL_SEPARATOR = ","
-        private const val DECIMAL_SEPARATOR_SIZE = 2
     }
 }

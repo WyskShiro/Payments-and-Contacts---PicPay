@@ -47,10 +47,10 @@ internal class DateExtensionsTest {
     @Test
     fun `date to strings success today`() {
         val calendar = Calendar.getInstance()
-        val hour = calendar.get(Calendar.HOUR_OF_DAY)
-        val minute = calendar.get(Calendar.MINUTE)
+        val formattedHour = String.format("%02d", calendar.get(Calendar.HOUR_OF_DAY))
+        val formattedMinute = String.format("%02d", calendar.get(Calendar.MINUTE))
         assertEquals(
-            "$hour:$minute",
+            "$formattedHour:$formattedMinute",
             calendar.time.format(HH_MM)
         )
     }
