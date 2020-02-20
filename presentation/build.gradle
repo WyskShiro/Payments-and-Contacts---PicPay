@@ -95,4 +95,10 @@ dependencies {
 
     // Swipe Refresh
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swipeRefreshLayoutVersion"
+
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+    testImplementation "androidx.arch.core:core-testing:$androidCoreTestingVersion"
+    testImplementation "io.mockk:mockk:$mockkVersion"
+    testImplementation "org.junit.platform:junit-platform-runner:$junitRunnerVersion"
 }
