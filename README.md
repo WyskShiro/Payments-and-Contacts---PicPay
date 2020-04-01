@@ -1,4 +1,4 @@
-# Desafio-PicPay-Android-iOS
+# PicPay - Pagamento e Contatos
 - Linguagem utilizada: Kotlin
 - CI com Gitlab para lint e testes unitários
 - Testes unitários usando JUnit + Mockk
