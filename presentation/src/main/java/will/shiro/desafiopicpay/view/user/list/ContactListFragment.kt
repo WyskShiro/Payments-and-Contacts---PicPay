@@ -3,14 +3,13 @@ package will.shiro.desafiopicpay.view.user.list
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.test.espresso.idling.CountingIdlingResource
 import will.shiro.desafiopicpay.R
 import will.shiro.desafiopicpay.databinding.FragmentContactListBinding
 import will.shiro.desafiopicpay.util.base.BaseFragment
 import will.shiro.desafiopicpay.util.base.BaseViewModel
-import will.shiro.desafiopicpay.util.di.ViewModelFactory
 import will.shiro.desafiopicpay.util.error.Placeholder
 import will.shiro.desafiopicpay.util.extensions.navigateSafe
 import will.shiro.desafiopicpay.util.extensions.observeAction
@@ -26,14 +25,12 @@ class ContactListFragment : BaseFragment(R.layout.fragment_contact_list) {
     override val baseViewModel: BaseViewModel get() = viewModel
 
     @Inject
-    protected lateinit var viewModelFactory: ViewModelFactory<ContactListFragmentViewModel>
-    protected val viewModel by lazy {
-        ViewModelProvider(this, viewModelFactory).get(ContactListFragmentViewModel::class.java)
-    }
+    lateinit var viewModel: ContactListFragmentViewModel
 
     protected val activityViewModel: MainViewModel by activityViewModels()
 
-    private lateinit var binding: FragmentContactListBinding
+    lateinit var binding: FragmentContactListBinding
+        private set
     private val contactAdapter by lazy {
         ContactAdapter(viewModel::onContactSelected)
     }
@@ -84,6 +81,7 @@ class ContactListFragment : BaseFragment(R.layout.fragment_contact_list) {
 
     private fun onContacts(contacts: List<User>?) {
         contacts?.run(contactAdapter::updateList)
+        EspressoIdlingResource.decrement()
     }
 
     private fun onGoToPrimingCreditCard(user: User?) {
@@ -107,7 +105,8 @@ class ContactListFragment : BaseFragment(R.layout.fragment_contact_list) {
 
     private fun goToReceiptCreditCard(transaction: Transaction?) {
         transaction?.let {
-            findNavController().navigateSafe(ContactListFragmentDirections
+            findNavController().navigateSafe(
+                ContactListFragmentDirections
                     .actionUserListFragmentToReceiptCreditCardFragment(it)
             )
         }

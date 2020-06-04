@@ -28,7 +28,7 @@ android {
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
         buildConfigField "String", "API_URL", "\"$rootProject.ext.apiUrl\""
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "will.shiro.desafiopicpay.view.user.list.TestRunner"
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
     }
@@ -101,4 +101,13 @@ dependencies {
     testImplementation "androidx.arch.core:core-testing:$androidCoreTestingVersion"
     testImplementation "io.mockk:mockk:$mockkVersion"
     testImplementation "org.junit.platform:junit-platform-runner:$junitRunnerVersion"
+
+    debugImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    debugImplementation 'androidx.test:runner:1.2.0'
+    debugImplementation 'androidx.test:rules:1.2.0'
+    debugImplementation 'androidx.fragment:fragment-testing:1.2.4'
+    debugImplementation 'androidx.test.espresso:espresso-contrib:3.2.0'
+    androidTestImplementation "io.mockk:mockk-android:1.10.0"
+    implementation 'androidx.test.espresso:espresso-idling-resource:3.2.0'
+    androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
 }

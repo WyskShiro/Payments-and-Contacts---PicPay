@@ -31,9 +31,11 @@ abstract class BaseFragment(
     abstract val baseViewModel: BaseViewModel
 
     override fun onAttach(context: Context) {
-        AndroidSupportInjection.inject(this)
+        injectMembers()
         super.onAttach(context)
     }
+
+    protected open fun injectMembers() = AndroidSupportInjection.inject(this)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

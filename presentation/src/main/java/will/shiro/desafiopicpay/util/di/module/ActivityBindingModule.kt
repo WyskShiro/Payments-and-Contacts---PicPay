@@ -9,6 +9,6 @@ import will.shiro.desafiopicpay.view.MainActivity
 interface ActivityBindingModule {
 
     @ActivityScope
-    @ContributesAndroidInjector(modules = [FragmentBindingModule::class])
+    @ContributesAndroidInjector//(modules = [FragmentBindingModule::class])
     fun contributeMainActivity(): MainActivity
 }

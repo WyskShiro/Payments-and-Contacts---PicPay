@@ -16,7 +16,8 @@ class MainActivity : BaseActivity() {
 
     protected val viewModel: MainViewModel by viewModels()
 
-    private lateinit var binding: ActivityMainBinding
+    lateinit var binding: ActivityMainBinding
+        private set
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

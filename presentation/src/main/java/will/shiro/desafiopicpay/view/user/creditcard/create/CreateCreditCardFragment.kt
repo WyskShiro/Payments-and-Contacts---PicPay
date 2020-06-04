@@ -34,7 +34,8 @@ class CreateCreditCardFragment : BaseFragment(R.layout.fragment_create_credit_ca
         ViewModelProvider(this, viewModelFactory).get(CreateCreditCardViewModel::class.java)
     }
 
-    private lateinit var binding: FragmentCreateCreditCardBinding
+    lateinit var binding: FragmentCreateCreditCardBinding
+        private set
     val args: CreateCreditCardFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

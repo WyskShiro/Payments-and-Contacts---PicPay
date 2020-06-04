@@ -2,7 +2,9 @@ package will.shiro.desafiopicpay.view.user.list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
+import io.reactivex.schedulers.Schedulers
 import will.shiro.desafiopicpay.util.base.BaseViewModel
 import will.shiro.desafiopicpay.util.base.Event
 import will.shiro.desafiopicpay.util.extensions.defaultPlaceholders
@@ -26,7 +28,7 @@ class ContactListFragmentViewModel @Inject constructor(
     val goToPrimingCreditCard: LiveData<Event<User>> get() = _goToPrimingCreditCard
     val goToPaymentCreditCard: LiveData<Event<Pair<User, CreditCard>>> get() = _goToPaymentCreditCard
 
-    private val _contacts by lazy { MutableLiveData<List<User>>() }
+    private val _contacts = MutableLiveData<List<User>>()
     private val _searchedContacts by lazy { MutableLiveData<List<User>>() }
     private val _goToPrimingCreditCard by lazy { MutableLiveData<Event<User>>() }
     private val _goToPaymentCreditCard by lazy { MutableLiveData<Event<Pair<User, CreditCard>>>() }
@@ -56,11 +58,13 @@ class ContactListFragmentViewModel @Inject constructor(
     }
 
     private fun getUsers() {
+        EspressoIdlingResource.increment()
         getUsers.execute()
-            .defaultPlaceholders(::setPlaceholder)
-            .defaultSched(schedulerProvider)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(::onGetUsersFailure) {
-                _contacts.value = it
+                Thread.sleep(3000)
+                _contacts.postValue(it)
             }
     }
 

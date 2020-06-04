@@ -22,7 +22,7 @@ buildscript {
         daggerVersion = '2.26'
         daggerAssistedInjectionVersion = '0.5.2'
         glideVersion = '4.4.0'
-        gradleVersion = '3.5.3'
+        gradleVersion = '4.0.0'
         kotlinVersion = '1.3.61'
         logginInterceptorVersion = '3.10.0'
         materialVersion = '1.1.0'
