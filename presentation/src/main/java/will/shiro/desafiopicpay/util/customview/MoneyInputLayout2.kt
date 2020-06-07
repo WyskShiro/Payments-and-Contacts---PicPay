@@ -6,14 +6,15 @@ import android.view.LayoutInflater
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import setClick
 import will.shiro.desafiopicpay.databinding.CustomMoneyInputViewBinding
 import will.shiro.desafiopicpay.util.mask.MoneyMask
 
-class MoneyInputLayout @JvmOverloads constructor(
+class MoneyInputLayout2 @JvmOverloads constructor(
     context: Context,
     attributeSet: AttributeSet? = null
-) : LinearLayout(context, attributeSet) {
+) : ConstraintLayout(context, attributeSet) {
 
     val editText: EditText by lazy {
         binding.editText

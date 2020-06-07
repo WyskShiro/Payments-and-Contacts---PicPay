@@ -105,6 +105,8 @@ class ContactListFragment : BaseFragment(R.layout.fragment_contact_list) {
         }
     }
 
+    // TODO on Resume -> if this.transaction != null -> execute this method
+    // TODO this.transaction = transaction (in payment)
     private fun goToReceiptCreditCard(transaction: Transaction?) {
         transaction?.let {
             findNavController().navigateSafe(ContactListFragmentDirections
