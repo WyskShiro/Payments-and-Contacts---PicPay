@@ -12,8 +12,9 @@ import will.shiro.desafiopicpay.util.base.BaseActivity
 import will.shiro.desafiopicpay.util.base.BaseViewModel
 
 class MainActivity : BaseActivity() {
-    override val baseViewModel: BaseViewModel get() = viewModel
-
+    override fun baseViewModel(): BaseViewModel {
+        return viewModel
+    }
     protected val viewModel: MainViewModel by viewModels()
 
     private lateinit var binding: ActivityMainBinding

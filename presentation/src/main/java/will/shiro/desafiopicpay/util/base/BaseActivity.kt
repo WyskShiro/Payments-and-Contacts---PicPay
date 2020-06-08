@@ -12,7 +12,7 @@ import dagger.android.HasAndroidInjector
 import will.shiro.desafiopicpay.util.extensions.observeEvent
 import javax.inject.Inject
 
-abstract class BaseActivity : AppCompatActivity(), HasAndroidInjector {
+abstract class BaseActivity2 : AppCompatActivity(), HasAndroidInjector {
 
     @Inject
     protected lateinit var fragmentInjector: DispatchingAndroidInjector<Fragment>

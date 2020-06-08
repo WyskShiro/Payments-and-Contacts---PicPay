@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import javax.inject.Inject
 import javax.inject.Provider
 
-class ViewModelFactory<T : ViewModel> @Inject constructor(
+class ViewModelFactory2<T : ViewModel> @Inject constructor(
     private val viewModelProvider: Provider<T>
 ) : ViewModelProvider.Factory {
 
